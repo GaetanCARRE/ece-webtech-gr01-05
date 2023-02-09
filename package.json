@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "develop": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/GaetanCARRE/ece-webtech-gr01-05/issues"
   },
-  "homepage": "https://github.com/GaetanCARRE/ece-webtech-gr01-05#readme"
+  "homepage": "https://github.com/GaetanCARRE/ece-webtech-gr01-05#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
