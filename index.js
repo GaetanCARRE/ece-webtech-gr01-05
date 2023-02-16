@@ -1,5 +1,12 @@
-const http = require('http')
-const url = require('url')
-const handles = require('./handles')
-const server = http.createServer(handles.serverHandle);
-server.listen(8080)
+const express = require('express');
+const app = express();
+
+const route = require('./handles');
+
+app.use('/', route);  // Mount the router to the root path
+app.use('/about', route); // Mount the router to the /about path
+app.use('/hello', route); // Mount the router to the /hello path
+
+app.listen(8080, () => {
+  console.log('Server is running...');
+})
