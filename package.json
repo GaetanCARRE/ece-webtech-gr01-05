@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/GaetanCARRE/ece-webtech-gr01-05#readme",
   "dependencies": {
+    "json": "^11.0.0",
     "nodemon": "^2.0.20"
   }
 }
