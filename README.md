@@ -37,7 +37,7 @@ Le TP1 est une introduction au développement d'applications Node.js. Les étape
 * Clonez le dépôt en utilisant la commande: ```git clone https://github.com/GaetanCARRE/ece-webtech-gr01-05.git```
 * Entrez dans le dossier ```cd ece-webtech-gr01-05```
 
-<div align="center">![s1](/img/screen1)
+![s1](/img/screen1)
 
 ### Part 1. Démarrer un projet 
 
@@ -45,7 +45,7 @@ Le TP1 est une introduction au développement d'applications Node.js. Les étape
 * Initialisation de node.js ``` npm init -y``` ce qui créer le fichier ```package.json```
 * Faisons notre premier commit ! 🥹
 
-<div align="center">![s2](/img/screen2)
+![s2](/img/screen2)
 
 ### Part 2. Créer un script NodeJs
 
@@ -139,8 +139,8 @@ On créer un programme avec plusieurs routes:
 
 Voici le code qu'on obtient dans les fichiers ``` handles.js``` et ```index.js``` pour obtenir ce que l'on souhaite:
 
-<div align="center">![s3](/img/screen3)
-<div align="center">![s4](/img/screen4)
+![s3](/img/screen3)
+![s4](/img/screen4)
 
 ### Part 6. Upload sur Git 
 
