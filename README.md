@@ -1,4 +1,4 @@
-# ece-webtech-gr01-05 by CARRE Gaetan et BOUHACINA Adam
+<div align="center"># ece-webtech-gr01-05 by CARRE Gaetan et BOUHACINA Adam</div>
 ## Introduction
 
 👋 Bienvenue sur notre projet de technologie web !
