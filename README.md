@@ -17,3 +17,7 @@
 
 🚀 Nous sommes impatients de commencer ce voyage passionnant dans le monde de la technologie web ! Attention décollage !
 
+👨‍💻 README des différentes TP
+
+* [TP1: NodeJs](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/lab1_nodejs.md)
+* [TP2: WebAPI](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/lab2_webapi.md)

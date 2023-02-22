@@ -16,9 +16,9 @@ On installe donc le package npm Express sur notre machine et après avoir étudi
 
 On passe ensuite aux tests de l'application Gaetan utilise **Insomnia** et **Postman** tandis qu'Adam utilise **Postman**.
 
-![s5] (/img/screen5.png)
-![s6] (/img/screen6.png)
-![s7] (/img/screen7.png)
+![Untitled](/img/screen5.png)
+![Untitled](/img/screen6.png)
+![Untitled](/img/screen7.png)
 
 ### Part 2. Créer l'API
 
@@ -36,12 +36,12 @@ Dans cette partie on va créer une API avec un certains nombres d'articles, de c
 Après avoir mis en place les routes, notamment grâce à la fonction ```find()``` pour effectuer des recherches dans des fichers Javascript,
 voici les résultats de nos tests réalisés sur **Postman** pour chaque requête:
 
-![s8] (/img/screen8.png)
-![s9] (/img/screen9.png)
-![s10] (/img/screen10.png)
-![s11] (/img/screen11.png)
-![s12] (/img/screen12.png)
-![s13] (/img/screen13.png)
+![Untitled](/img/screen8.png)
+![Untitled](/img/screen9.png)
+![Untitled](/img/screen10.png)
+![Untitled](/img/screen11.png)
+![Untitled](/img/screen12.png)
+![Untitled](/img/screen13.png)
 
 ### Conclusion
 
