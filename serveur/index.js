@@ -4,7 +4,7 @@ const handles = require('./handles')
 const express = require('express')
 const app = express()
 
-
+app.use(express.json())
 app.use('/',handles)
 app.listen(8080, () => {
     console.log('Server started.')

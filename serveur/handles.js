@@ -77,12 +77,11 @@
             res.write(JSON.stringify(db.articles))
             res.end()
         })
-        // HELP
         router.post('/articles',(req, res) =>{ // post route articles qui permet d'ajouter un nouvel article
-            const article = req.body
-            db.articles.push(article)
-            res.write(JSON.stringify(db.articles))
-            res.end()
+            const article = req.body;
+            console.log(article);
+            db.articles.push(article);
+            res.send(article);
         })
         router.get('/articles/:articleId',(req, res) =>{ // get route articles qui permet de récupérer un article par son ID
             const SearchID = req.params.articleId
@@ -96,17 +95,12 @@
             res.write(JSON.stringify(comments))
             res.end()
         })
-        // HELP
         router.post('/articles/:articleId/comments',(req, res) =>{ // post ajouter un nouveau commentaire a un article grace a son ID
-            const SearchID = req.params.articleId
-            const article = db.articles.find(article => article.id === SearchID)
-            const comment = req.body
-            comment.articleId = article.id
-            newtimestamp=Date.now()
-            comment.timestamp=ntimestamp
-            db.comments.push(comment)
-            res.write(JSON.stringify(db.comments))
-            res.end()
+            const articleId = req.params.articleId;
+            const comment = req.body;
+            comment.articleId = articleId;
+            db.comments.push(comment);
+            res.send(comment);
         })
         router.get('/articles/:articleId/comments/:commentId',(req, res) =>{ // get route articles qui permet de récupérer un commentaire d'un article grace a son ID
             const ASearchID = req.params.articleId
@@ -116,6 +110,5 @@
             res.end()
         })
         module.exports= router
-    //}
 
 
