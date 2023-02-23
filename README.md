@@ -5,7 +5,7 @@
 
 📝 Ce fichier README accompagne les différents travaux pratiques réalisés par CARRE Gaetan et BOUHACINA Adam dans le cadre de la matière de technologie web.
 
-💻 Pour une meilleure compréhension et pour être plus opérationnels lors de la réalisation du projet, nous avons décidé de travailler sur deux branches distinctes pour chaque TP : Adam sur la branche [adamtp](https://github.com/GaetanCARRE/ece-webtech-gr01-05/tree/adamtp) et Gaetan sur la branche [dev](https://github.com/GaetanCARRE/ece-webtech-gr01-05/tree/dev).
+💻 Pour une meilleure compréhension et pour être plus opérationnels lors de la réalisation du projet, nous avons décidé de travailler sur deux branches distinctes pour chaque TP : Adam sur la branche adamtp et Gaetan sur la branche dev. **Merci d'utiliser la branche [dev](https://github.com/GaetanCARRE/ece-webtech-gr01-05/tree/dev) pour la notation des TP**
 
 🌐 Notre objectif à travers ces TP est de découvrir et de maîtriser les technologies web modernes, telles que HTML, CSS, JavaScript et bien d'autres encore. Nous allons également explorer des frameworks populaires tels que React, Angular, Vue.js, etc.
 
