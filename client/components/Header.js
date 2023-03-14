@@ -6,7 +6,7 @@ const HeaderComponent = () => {
     <div className="bg-black text-white py-4">
       <div className="max-w-7xl mx-auto px-4 bg-transparent">
         <div className="flex justify-between items-center bg-transparent">
-          <h1 className="text-2xl font-bold bg-transparent">My Website</h1>
+          <h1 className="text-2xl font-bold bg-transparent">CNS</h1>
           <nav className='bg-transparent'>
             <ul className="flex space-x-4 bg-transparent">
               <li className='bg-transparent'>
