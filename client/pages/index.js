@@ -17,7 +17,6 @@ export default function HomePage() {
           width="350px"
           height="300px"
         />
-
       </div>
       <Footer />
     </>

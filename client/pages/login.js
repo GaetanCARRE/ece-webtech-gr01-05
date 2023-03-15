@@ -11,7 +11,13 @@ const login = () => {
     <div className='flex justify-center'>
         <div className="container text-black" style={{ padding: '50px 0 100px 0' }}>
         {!session ? (
-            <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="light" />
+            <Auth
+                supabaseClient={supabase}
+                appearance={{ theme: ThemeSupa }}
+                providers={['google']}
+                theme="light"
+                updateProfileFormFields={[    {      name: 'username',      label: 'Nom d\'utilisateur',      placeholder: 'Entrez votre nom d\'utilisateur',      inputType: 'text',      defaultValue: session?.user?.user_metadata?.username,    },  ]}
+            />
         ) : (
             <Account session={session} />
         )}
