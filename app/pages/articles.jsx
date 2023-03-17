@@ -15,9 +15,17 @@ export function Articles() {
         <li>
           <Link href="/contacts">Contact Us</Link>
         </li>
-      </ul><h1 className="text-3xl font-bold underline">
-          RIEN
-        </h1></>
+      </ul><ul>
+      <li>
+        <Link href="/articles/ps">Playstation 5</Link>
+      </li>
+      <li>
+        <Link href="/articles/xbox">Xbox One </Link>
+      </li>
+      <li>
+        <Link href="/articles/switch">Nintendo Switch </Link>
+      </li>
+        </ul></>
     )
   }
   
