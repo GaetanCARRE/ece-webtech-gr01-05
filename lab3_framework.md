@@ -32,4 +32,4 @@ Dans ce cas là, on va créer une page d'article avec une route comme ```/articl
 ![Untitled](/img/screen18.png)
 
 ### Conclusion:
-Ce TP est une étape importante pour la création de votre site du projet et l'apprentissage de l'utilisation de React et Next.js ensemble. En effet nous avons pu apprendre, à créer la base d'un site web en construisant le squelette. De plus nous avons pris en main l'outil TailWindCSS qui nous permet de gérer toute la partie design du site web. 
+Ce TP est une étape importante pour la création de votre site du projet et l'apprentissage de l'utilisation de React et Next.js ensemble. En effet nous avons pu apprendre, à créer la base d'un site web en construisant le squelette. De plus, nous avons pris en main l'outil TailWindCSS qui nous permet de gérer toute la partie design du site web. Enfin nous avons appris comment créer des routes dynamiques et leur utilité.
