@@ -4,20 +4,26 @@
       "title": "Nike Air Max 270",
       "content": "The Nike Air Max 270 is a new addition to the Air Max family. It features a large Air unit in the heel and a large Max Air unit in the forefoot. The shoe is designed to be a lifestyle shoe, but it is also suitable for running.",
       "date": "04/10/2022",
-      "author": "Nike"
+      "author": "Nike",
+      "img": "tnf_coat.webp",
+      "price" : "100"
     },
     {
       "id": "2",
       "title": "Nike Air Force 1",
       "content": "The Nike Air Force 1 is a basketball shoe that was first released in 1982. It was designed by Bruce Kilgore and is named after the aircraft that carries the President of the United States. The shoe is still popular today and is available in many different colorways.",
       "date": "03/12/2021",
-      "author": "Nike"
+      "author": "Nike",
+      "img": "carhartt_bag.webp",
+      "price" : "110"
     },
     {
       "id": "3",
       "title": "Jordan 1",
       "content": "The Jordan 1 is a basketball shoe that was first released in 1985. It was designed by Peter Moore and is named after Michael Jordan. The shoe is still popular today and is available in many different colorways.",
       "date": "02/11/2020",
-      "author": "Jordan"
+      "author": "Jordan",
+      "img": "patta_converse.webp",
+      "price" : "120"
     }
 ]
