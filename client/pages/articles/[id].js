@@ -55,7 +55,7 @@ export default function Article({
                     
 
                     <h1 className='text-black text-xl'>Description</h1>
-                    <hr class="h-px my-2 bg-gray-400 border-0"></hr>
+                    <hr className="h-px my-2 bg-gray-400 border-0"></hr>
                     <h2 className='text-black text-sm font-bold'>{article.content}</h2>
 
                 </div>
