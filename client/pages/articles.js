@@ -9,11 +9,11 @@ export default function ArticlesPage() {
   return (
     <>
       <Header />
-      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8'>
+      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 mt-10'>
         {articles.map(article => {
-          const test = require(`/img/${article.img}`);
+          const test = require(`/img/${article.img}1.webp`);
           return (
-            <div key={article.id} className='text-black flex flex-col justify-center items-center'>
+            <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10'>
               <Link href={`/articles/${article.id}`} className='text-black' >
                 <div className='text-black'>
                   <Image className='mx-auto object-cover'

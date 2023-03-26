@@ -4,35 +4,33 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 
-
 export default function Article({
     article
 }) {
-    const img = require(`/img/${article.img}`);
-    const img2 = require(`/img/${article.img2}`);
+    const images = [];
+    for (let i = 1; i <= 4; i++) {
+        const img = require(`/img/${article.img}${i}.webp`);
+        images.push(
+            <div key={`img-${i}`} className='text-black flex flex-col justify-center items-center'>
+                <div className='text-black'>
+                    <Image className='mx-auto object-cover'
+                        src={img}
+                        alt={`Picture ${i} of the author`}
+                        width={580}
+                        height={725}
+                    />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>
             <Header />
-            <div className='grid grid-cols-3 pb-20 gap-x-10 px-10'>
-                <div key={article.id} className='text-black flex flex-col justify-center items-center'>
-                    <div className='text-black'>
-                        <Image className='mx-auto object-cover'
-                            src={img}
-                            alt="Picture of the author"
-                            width={580}
-                            height={725}
-                        />
-                    </div>
-                </div>
-                <div key={article.id} className='text-black flex flex-col justify-center items-center'>
-                    <div className='text-black'>
-                        <Image className='mx-auto object-cover'
-                            src={img2}
-                            alt="Picture of the author"
-                            width={580}
-                            height={725}
-                        />
+            <div className='grid grid-cols-3 pb-20 gap-x-10 px-10 mt-10'>
+                <div className='col-span-2'>
+                    <div className='grid grid-cols-2 gap-x-10 gap-y-10'>
+                        {images}
                     </div>
                 </div>
                 <div>
@@ -44,7 +42,7 @@ export default function Article({
 
                     <h1 className='text-black text-base pb-2'>Taille</h1>
                     <div className='flex flex-row gap-x-2 mb-6'>
-                        
+
                         <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S</button>
                         <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M</button>
                         <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L</button>
@@ -52,9 +50,9 @@ export default function Article({
                     </div>
                     <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>AJOUTER AU PANIER</button>
 
-                    
 
-                    <h1 className='text-black text-xl'>Description</h1>
+
+                    <h1 className='text-black text-xl'>DESCRIPTION</h1>
                     <hr className="h-px my-2 bg-gray-400 border-0"></hr>
                     <h2 className='text-black text-sm font-bold'>{article.content}</h2>
 
