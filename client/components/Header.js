@@ -7,7 +7,7 @@ const HeaderComponent = () => {
   // vérifier si un utilisateur est connecté
   const user = useUser()
   return (
-    <div className="bg-black text-white py-4">
+    <div className="bg-black text-white py-4 mb-10">
       <div className="max-w-7xl mx-auto px-4 bg-transparent">
         <div className="flex justify-between items-center bg-transparent">
           <h1 className="text-2xl font-bold bg-transparent">CNS</h1>

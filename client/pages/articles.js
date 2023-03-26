@@ -9,32 +9,29 @@ export default function ArticlesPage() {
   return (
     <>
       <Header />
-      <div className='grid grid-cols-3'>
+      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 mt-10'>
         {articles.map(article => {
-          const test = require(`/img/${article.img}`);
+          const test = require(`/img/${article.img}1.webp`);
           return (
-            <div key={article.id} className='text-black'>
-              <div className='text-black'>
-                <Image className='mx-auto'
-                  src={test}
-                  alt="Picture of the author"
-                  width="350"
-                  height="300"  
-                />
-              </div>
-              <h2 className='text-black'>{article.title}</h2>
-              <div className='text-black'>{article.content}</div>
-              <div className='text-black'>Published on: {article.date}</div>
-              <div className='text-black'>Written by: {article.author}</div>
-              
+            <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10'>
               <Link href={`/articles/${article.id}`} className='text-black' >
-                Read more
+                <div className='text-black'>
+                  <Image className='mx-auto object-cover'
+                    src={test}
+                    alt="Picture of the author"
+                    width={580}
+                    height={725}
+                  />
+                </div>
+                <h2 className='text-black text-sm font-bold pt-2'>{article.title}</h2>
+                <h2 className='text-black text-sm py-2 font-light'>{article.brand}</h2>
+                <h2 className='text-black text-sm font-bold'>{article.price}€</h2>
               </Link>
             </div>
           )
         })}
       </div>
-      <Footer />
+      <Footer/>
     </>
   );
 }
