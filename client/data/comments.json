@@ -1,0 +1,16 @@
+[
+    {
+      "id": 1,
+      "timestamp": 1664835049,
+      "content": "I really like this Nike Air Max 270.",
+      "articleId": 1,
+      "author": "Maxime Dupont"
+    },
+    {
+      "id": 2,
+      "timestamp": 1664835050,
+      "content": "I really like this Nike Air Force 1.",
+      "articleId": 2,
+      "author": "Gaetan Carre"
+    }
+]

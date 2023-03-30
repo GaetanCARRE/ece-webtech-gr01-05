@@ -1,0 +1,65 @@
+[
+    {
+      "id": "1",
+      "title": "Air Max 270",
+      "content": "The Nike Air Max 270 is a new addition to the Air Max family. It features a large Air unit in the heel and a large Max Air unit in the forefoot. The shoe is designed to be a lifestyle shoe, but it is also suitable for running.",
+      "date": "04/10/2022",
+      "brand": "NIKE",
+      "img": "tnf_coat",
+      "price" : "100"
+    },
+    {
+      "id": "2",
+      "title": "Bag",
+      "content": "The Nike Air Force 1 is a basketball shoe that was first released in 1982. It was designed by Bruce Kilgore and is named after the aircraft that carries the President of the United States. The shoe is still popular today and is available in many different colorways.",
+      "date": "03/12/2021",
+      "brand": "CARHARTT",
+      "img": "patta_converse",
+      "price" : "110"
+    },
+    {
+      "id": "3",
+      "title": "Hoodie",
+      "content": "The Jordan 1 is a basketball shoe that was first released in 1985. It was designed by Peter Moore and is named after Michael Jordan. The shoe is still popular today and is available in many different colorways.",
+      "date": "02/11/2020",
+      "brand": "PATTA",
+      "img": "carhartt_bag",
+      "price" : "120"
+    },
+    {
+      "id": "4",
+      "title": "DUNK HI RETRO PURE PLATINUM",
+      "content": "The Nike Air Max 90 is a running shoe that was first released in 1990. It was designed by Tinker Hatfield and is named after the Air Max 180. The shoe is still popular today and is available in many different colorways.",
+      "date": "01/10/2019",
+      "brand": "PATTA",
+      "img": "dunkhi",
+      "price" : "120"
+    },
+    {
+      "id": "5",
+      "title": "BB550",
+      "content": "The New Balance 550 is a running shoe that was first released in 1988. It was designed by New Balance and is named after the year it was released. The shoe is still popular today and is available in many different colorways.",
+      "date": "12/09/2018",
+      "brand": "NEW BALANCE",
+      "img": "550grey",
+      "price" : "150"
+    },
+    {
+      "id": "6",
+      "title": "Jordan 1 mid",
+      "content": "The jordan 1 mid is a basketball shoe that was first released in 1985. It was designed by Peter Moore and is named after Michael Jordan. The shoe is still popular today and is available in many different colorways.",
+      "date": "11/08/2017",
+      "brand": "NIKE",
+      "img": "jordan1_mid_",
+      "price" : "140"
+    },
+    {
+      "id": "7",
+      "title": "XT-6",
+      "content": "The Salomon XT-6 is a running shoe that was first released in 2016. It was designed by Salomon and is named after the year it was released. The shoe is still popular today and is available in many different colorways.",
+      "date": "10/07/2016",
+      "brand": "SALOMON",
+      "img": "XT-6_",
+      "price" : "180"
+    }
+]
