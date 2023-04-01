@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import {MdNavigateNext, MdNavigateBefore} from "react-icons/md";
 
 const CarouselControls = (props) => {
