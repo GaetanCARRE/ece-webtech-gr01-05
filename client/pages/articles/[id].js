@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 import { createClient } from '@supabase/supabase-js'
+import { useEffect, useState } from 'react';
 
 export default function Article({article}) 
 {
@@ -13,13 +14,13 @@ export default function Article({article})
 
     // Récupérer les données de stock pour un article donné
     async function getStockData() {
-        const { data: stockData, error: stockError } = await supabase
+        const { data, error } = await supabase
             .from('articles')
             .select('stock_s, stock_m, stock_l, stock_xl','stock_10, stock_11, stock_12, stock_13','stock','type')
             .eq('id', article.id)
             .single()
-        if (stockError) {
-            console.log('Error getting stock data', stockError)
+        if (error) console.log('error', error)
+        return data
         }
 
     const images = [];
@@ -40,17 +41,18 @@ export default function Article({article})
     }
 
     const remainingStock = {
-        getStockData(){},
-        'S': stockData.stock_s,
-        'M': stockData.stock_m,
-        'L': stockData.stock_l,
-        'XL': stockData.stock_xl,
-        '10': stockData.stock_10,
-        '11': stockData.stock_11,
-        '12': stockData.stock_12,
-        '13': stockData.stock_13,
-        'stock' : stockData.stock,
-      }
+            return:{
+                    'S': stockData.stock_s,
+                    'M': stockData.stock_m,
+                    'L': stockData.stock_l,
+                    'XL': stockData.stock_xl,
+                    '10': stockData.stock_10,
+                    '11': stockData.stock_11,
+                    '12': stockData.stock_12,
+                    '13': stockData.stock_13,
+                    'stock' : stockData.stock,
+            }
+        }
 
       return (
         <>
@@ -104,7 +106,6 @@ export default function Article({article})
             <Footer />
         </>
     )
-}
 }
 
 
