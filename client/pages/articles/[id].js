@@ -4,9 +4,10 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 
-export default function Article({
-    article
-}) {
+
+export default function Article({article}) 
+{
+
     const images = [];
     for (let i = 1; i <= 4; i++) {
         const img = require(`/img/${article.img}${i}.webp`);
@@ -24,7 +25,7 @@ export default function Article({
         );
     }
 
-    return (
+      return (
         <>
             <Header />
             <div className='grid grid-cols-3 pb-20 gap-x-10 px-10 mt-10'>
@@ -42,16 +43,30 @@ export default function Article({
 
                     <h1 className='text-black text-base pb-2'>Taille</h1>
                     <div className='flex flex-row gap-x-2 mb-6'>
+                        {article.type === 'CLOTHES' && (
+                            <div>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S( {article.stock_S} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({article.stock_M} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({article.stock_L} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({article.stock_XL} restants)</button>
+                            </div>
+                        )}
+                        {article.type === 'SHOES' && (
+                            <div>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>10( {article.stock_10} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>11({article.stock_11} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>12({article.stock_12} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>13({article.stock_13} restants)</button>
+                            </div>
+                        )}
+                        {article.type === 'ACCESSORIES' && (
+                            <div>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>Taille Unique({article.stock} restants)</button>
+                            </div>
+                        )}
 
-                        <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S</button>
-                        <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M</button>
-                        <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L</button>
-                        <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL</button>
                     </div>
                     <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>AJOUTER AU PANIER</button>
-
-
-
                     <h1 className='text-black text-xl'>DESCRIPTION</h1>
                     <hr className="h-px my-2 bg-gray-400 border-0"></hr>
                     <h2 className='text-black text-sm font-bold'>{article.content}</h2>
@@ -63,6 +78,7 @@ export default function Article({
         </>
     )
 }
+
 
 export async function getStaticProps(ctx) {
     const response = await fetch(`http://localhost:3000/api/articles/${ctx.params.id}`)
@@ -82,3 +98,4 @@ export async function getStaticPaths() {
         fallback: false
     };
 }
+

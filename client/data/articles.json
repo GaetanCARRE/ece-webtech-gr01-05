@@ -6,7 +6,12 @@
       "date": "04/10/2022",
       "brand": "NIKE",
       "img": "tnf_coat",
-      "price" : "100"
+      "price" : "100",
+      "type" : "CLOTHES",
+      "stock_s" : "1",
+      "stock_m" : "1",
+      "stock_l" : "1",
+      "stock_xl" : "1"
     },
     {
       "id": "2",
@@ -15,7 +20,12 @@
       "date": "03/12/2021",
       "brand": "CARHARTT",
       "img": "patta_converse",
-      "price" : "110"
+      "price" : "110",
+      "type" : "CLOTHES",
+      "stock_s" : "1",
+      "stock_m" : "1",
+      "stock_l" : "1",
+      "stock_xl" : "1"
     },
     {
       "id": "3",
@@ -24,7 +34,9 @@
       "date": "02/11/2020",
       "brand": "PATTA",
       "img": "carhartt_bag",
-      "price" : "120"
+      "price" : "120",
+      "type" : "ACCESSORIES",
+      "stock":"1"
     },
     {
       "id": "4",
@@ -33,7 +45,13 @@
       "date": "01/10/2019",
       "brand": "PATTA",
       "img": "dunkhi",
-      "price" : "120"
+      "price" : "120",
+      "type" : "SHOES",
+      "stock_10": "7",
+      "stock_11": "8",
+      "stock_12": "10",
+      "stock_13": "11"
+
     },
     {
       "id": "5",
@@ -42,7 +60,12 @@
       "date": "12/09/2018",
       "brand": "NEW BALANCE",
       "img": "550grey",
-      "price" : "150"
+      "price" : "150",
+      "type" : "SHOES",
+      "stock_10": "1",
+      "stock_11": "1",
+      "stock_12": "1",
+      "stock_13": "1"
     },
     {
       "id": "6",
@@ -51,7 +74,12 @@
       "date": "11/08/2017",
       "brand": "NIKE",
       "img": "jordan1_mid_",
-      "price" : "140"
+      "price" : "140",
+      "type" : "SHOES",
+      "stock_10": "1",
+      "stock_11": "1",
+      "stock_12": "1",
+      "stock_13": "1"
     },
     {
       "id": "7",
@@ -60,6 +88,11 @@
       "date": "10/07/2016",
       "brand": "SALOMON",
       "img": "XT-6_",
-      "price" : "180"
+      "price" : "180",
+      "type" : "SHOES",
+      "stock_10": "11",
+      "stock_11": "11",
+      "stock_12": "11",
+      "stock_13": "11"
     }
 ]
