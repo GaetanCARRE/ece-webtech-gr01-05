@@ -35,3 +35,13 @@ export default function ArticlesPage() {
     </>
   );
 }
+
+export async function getStaticProps(ctx) {
+  const response = await fetch(`http://localhost:3000/api/articles`)
+  const articles = await response.json()
+  return {
+    props: {
+      articles: articles
+    }
+  };
+}
