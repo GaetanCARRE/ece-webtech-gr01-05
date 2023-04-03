@@ -3,25 +3,10 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
-import { createClient } from '@supabase/supabase-js'
-import { useEffect, useState } from 'react';
+
 
 export default function Article({article}) 
 {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // Récupérer les données de stock pour un article donné
-    async function getStockData() {
-        const { data, error } = await supabase
-            .from('articles')
-            .select('stock_s, stock_m, stock_l, stock_xl','stock_10, stock_11, stock_12, stock_13','stock','type')
-            .eq('id', article.id)
-            .single()
-        if (error) console.log('error', error)
-        return data
-        }
 
     const images = [];
     for (let i = 1; i <= 4; i++) {
@@ -39,20 +24,6 @@ export default function Article({article})
             </div>
         );
     }
-
-    const remainingStock = {
-            return:{
-                    'S': stockData.stock_s,
-                    'M': stockData.stock_m,
-                    'L': stockData.stock_l,
-                    'XL': stockData.stock_xl,
-                    '10': stockData.stock_10,
-                    '11': stockData.stock_11,
-                    '12': stockData.stock_12,
-                    '13': stockData.stock_13,
-                    'stock' : stockData.stock,
-            }
-        }
 
       return (
         <>
@@ -72,25 +43,25 @@ export default function Article({article})
 
                     <h1 className='text-black text-base pb-2'>Taille</h1>
                     <div className='flex flex-row gap-x-2 mb-6'>
-                        {stockData.type === 'CLOTHES' && (
+                        {article.type === 'CLOTHES' && (
                             <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S({remainingStock['S']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({remainingStock['M']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({remainingStock['L']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({remainingStock['XL']} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S( {article.stock_S} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({article.stock_M} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({article.stock_L} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({article.stock_XL} restants)</button>
                             </div>
                         )}
-                        {stockData.type === 'SHOES' && (
+                        {article.type === 'SHOES' && (
                             <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>10({remainingStock['10']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>11({remainingStock['11']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>12({remainingStock['12']} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>13({remainingStock['13']} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>10( {article.stock_10} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>11({article.stock_11} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>12({article.stock_12} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>13({article.stock_13} restants)</button>
                             </div>
                         )}
-                        {stockData.type === 'ACCESSORIES' && (
+                        {article.type === 'ACCESSORIES' && (
                             <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>Taille Unique({remainingStock['stock']} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>Taille Unique({article.stock} restants)</button>
                             </div>
                         )}
 
