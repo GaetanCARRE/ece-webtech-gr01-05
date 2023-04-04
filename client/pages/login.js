@@ -3,7 +3,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '../components/Account'
 
-const login = () => {
+const Login = () => {
   const session = useSession()
   const supabase = useSupabaseClient()
 
@@ -26,4 +26,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
