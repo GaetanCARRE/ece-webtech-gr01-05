@@ -20,5 +20,5 @@
 
 * [TP2: NodeJs](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab1_nodejs.md)
 * [TP3: WebAPI](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab2_webapi.md)
-* [TP4: Framework](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab3_framwork.md)
+* [TP4: Framework](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab3_framework.md)
 * [TP5: Rendering](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab4_rendering.md)
