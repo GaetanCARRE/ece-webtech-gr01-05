@@ -13,7 +13,7 @@ export default function Account({ session }) {
 
   useEffect(() => {
     getProfile()
-  }, [session])
+  }, [session, getProfile])
 
   async function getProfile() {
     try {
