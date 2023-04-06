@@ -43,10 +43,10 @@ export default function Article({article})
                     <div className='flex flex-row gap-x-2 mb-6'>
                         {article.type === 'CLOTHES' && (
                             <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S( {article.stock_S} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({article.stock_M} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({article.stock_L} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({article.stock_XL} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S( {article.stock_s} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({article.stock_m} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({article.stock_l} restants)</button>
+                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({article.stock_xl} restants)</button>
                             </div>
                         )}
                         {article.type === 'SHOES' && (
