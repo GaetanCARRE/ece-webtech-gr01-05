@@ -5,8 +5,9 @@ import Footer from '../components/Footer';
 export default function AboutPage() {
   return (
     <>
+      <div className='flex flex-col h-screen'>
       <Header />
-      <div>
+      <div className='flex-grow'>
         <h1 className='text-black py-10 text-center text-3xl font-bold'>About Us</h1>
         <p className='text-black text-lg px-20 py-5'>
           Welcome to Culture And Streewear, your go-to online destination for the latest and greatest in streetwear fashion. Our selection of sneakers and clothing is carefully curated to bring you the freshest styles from the biggest brands and up-and-coming designers.
@@ -20,6 +21,7 @@ export default function AboutPage() {
         <p>Click <Link href="/">here</Link> to go back to the homepage.</p>
       </div>
       <Footer />
+      </div>
     </>
   );
 }
