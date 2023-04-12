@@ -7,6 +7,12 @@ Ce TP a pour objectif de nous familiariser avec la manipulation de React. Dans c
 
 ### Part 1: Component state
 
+### Part 2: Form with native elements
+
+### Part 3: Form with controlled elements 
+
+### Part 4: Application State
+
 
 ### Conclusion
 Ce TP nous a permis de prendre en main et d'acquérir de l'expérience dans la gestion de l'état avec React et de l'implémenter dans notre projet.
