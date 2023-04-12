@@ -1,10 +1,41 @@
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
+import { useState } from 'react';
 
+export default function Article({ article }) {
 
-export default function Article({article}) 
-{
+    const [active, setActive] = useState(false);
+
+    const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
+
+    const handleClickSize = (index) => {
+        setActiveSizeIndex(index);
+    };
+
+    if (article.type == "CLOTHES") {
+        var sizes = [
+            { label: 'S', stock: article.stock_s },
+            { label: 'M', stock: article.stock_m },
+            { label: 'L', stock: article.stock_l },
+            { label: 'XL', stock: article.stock_xl },
+            
+            ];  
+    } else if(article.type == "SHOES"){
+    
+        var sizes = [
+            { label: '10', stock: article.stock_xl },
+            { label: '11', stock: article.stock_xl },
+            { label: '12', stock: article.stock_xl },
+            { label: '13', stock: article.stock_xl },
+        ];
+    }
+    else
+    {
+        var sizes = [
+            { label: 'Taille Unique', stock: article.stock },
+        ];
+    }
 
     const images = [];
     for (let i = 1; i <= 4; i++) {
@@ -23,7 +54,7 @@ export default function Article({article})
         );
     }
 
-      return (
+    return (
         <>
             <Header />
             <div className='grid grid-cols-3 pb-20 gap-x-10 px-10 mt-10'>
@@ -41,39 +72,29 @@ export default function Article({article})
 
                     <h1 className='text-black text-base pb-2'>Taille</h1>
                     <div className='flex flex-row gap-x-2 mb-6'>
-                        {article.type === 'CLOTHES' && (
-                            <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>S( {article.stock_s} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>M({article.stock_m} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>L({article.stock_l} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>XL({article.stock_xl} restants)</button>
-                            </div>
-                        )}
-                        {article.type === 'SHOES' && (
-                            <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>10( {article.stock_10} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>11({article.stock_11} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>12({article.stock_12} restants)</button>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>13({article.stock_13} restants)</button>
-                            </div>
-                        )}
-                        {article.type === 'ACCESSORIES' && (
-                            <div>
-                                <button className='text-black text-xs border border-gray-400 rounded-[2px] py-2 px-0 w-full'>Taille Unique({article.stock} restants)</button>
-                            </div>
-                        )}
-
+                        {sizes.map((size, index) => (
+                            <button
+                                key={size.label}
+                                className={`text-xs border py-2 px-0 w-full ${activeSizeIndex === index
+                                        ? 'bg-gray-900 text-white border-gray-900'
+                                        : 'text-black border-gray-400'
+                                    }`}
+                                onClick={() => handleClickSize(index)}
+                                disabled={size.stock === 0}
+                            >
+                                {size.label} ({size.stock} restants)
+                            </button>
+                        ))}
                     </div>
-                    <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>AJOUTER AU PANIER</button>
-                    <h1 className='text-black text-xl'>DESCRIPTION</h1>
-                    <hr className="h-px my-2 bg-gray-400 border-0"></hr>
-                    <h2 className='text-black text-sm font-bold'>{article.content}</h2>
 
+                    <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>
+                        Ajouter au panier
+                    </button>
                 </div>
-
             </div>
             <Footer />
         </>
+
     )
 }
 

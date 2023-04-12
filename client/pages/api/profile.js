@@ -1,10 +1,13 @@
-export default function handler(req, res) {
-    if(false){
-      return res.status(401).json('Resource access not authorized')
-    }
-    res.status(200).json({
-      username: 'adam&gaetan',
-      email: 'email@gmail.com',
-      creation_date: '2022-04-06',
-    })
+import { supabase } from '../../supabase/supabase.js';
+
+
+export default async function handler(req, res) {
+  const { data, error } = await supabase.from('profiles')
+  .select('*')
+  if (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
+
+  return res.status(200).json(data);
+}

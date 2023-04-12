@@ -1,11 +1,9 @@
-import articlesData from '../data/articles.json';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 
-export default function ArticlesPage() {
-  const articles = articlesData;
+export default function ArticlesPage({ articles }) {
   return (
     <>
       <Header />
