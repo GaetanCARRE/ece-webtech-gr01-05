@@ -97,6 +97,10 @@ export default function Article({ article }) {
                     <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>
                         Ajouter au panier
                     </button>
+                    <div>
+                        <h1 className='text-black text-xl text-bold pb-2'>Description</h1>
+                        <p className='text-black text-sm'>{article.content}</p>
+                    </div>
                 </div>
             </div>
             <Footer />
