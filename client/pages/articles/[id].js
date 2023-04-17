@@ -2,6 +2,8 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
 import { useState } from 'react';
+import { supabase } from '../../supabase/supabase.js';
+
 
 export default function Article({ article }) {
 
@@ -25,10 +27,10 @@ export default function Article({ article }) {
             { label: 'M', stock: article.stock_m },
             { label: 'L', stock: article.stock_l },
             { label: 'XL', stock: article.stock_xl },
-            
-            ];  
-    } else if(article.type == "SHOES"){
-    
+
+        ];
+    } else if (article.type == "SHOES") {
+
         var sizes = [
             { label: '10', stock: article.stock_xl },
             { label: '11', stock: article.stock_xl },
@@ -36,8 +38,7 @@ export default function Article({ article }) {
             { label: '13', stock: article.stock_xl },
         ];
     }
-    else
-    {
+    else {
         var sizes = [
             { label: 'Taille Unique', stock: article.stock },
         ];
@@ -82,8 +83,8 @@ export default function Article({ article }) {
                             <button
                                 key={size.label}
                                 className={`text-xs border py-2 px-0 w-full ${activeSizeIndex === index
-                                        ? 'bg-gray-900 text-white border-gray-900'
-                                        : 'text-black border-gray-400'
+                                    ? 'bg-gray-900 text-white border-gray-900'
+                                    : 'text-black border-gray-400'
                                     }`}
                                 onClick={() => handleClickSize(index)}
                                 disabled={size.stock === 0}
@@ -106,8 +107,21 @@ export default function Article({ article }) {
 
 
 export async function getStaticProps(ctx) {
-    const response = await fetch(`http://localhost:3000/api/articles/${ctx.params.id}`)
-    const article = await response.json()
+
+    const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('id', ctx.params.id)
+        .single();
+    if (!data) {
+        alert('Article not found');
+    }
+    console.log(data);
+    if (error) {
+        console.error(error);
+        alert(error.message)
+    }
+    const article = data
     return {
         props: {
             article: article
@@ -116,8 +130,12 @@ export async function getStaticProps(ctx) {
 }
 
 export async function getStaticPaths() {
-    const response = await fetch(`http://localhost:3000/api/articles`)
-    const articles = await response.json()
+    const { data, error } = await supabase.from('articles').select('*');
+    if (error) {
+        console.error(error);
+        alert(error.message);
+    }
+    const articles = data;
     return {
         paths: articles.map(article => `/articles/${article.id}`),
         fallback: false
