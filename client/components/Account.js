@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
@@ -13,7 +11,7 @@ export default function Account({ session }) {
 
   useEffect(() => {
     getProfile()
-  }, [session, getProfile])
+  }, [session])
 
   async function getProfile() {
     try {
@@ -66,56 +64,45 @@ export default function Account({ session }) {
   }
 
   return (
-    <>
-      <Header />
+    <div className="form-widget">
       <div>
-        <h1 className='text-4xl text-center py-10'> Profile</h1>
-        <div className="flex justify-center">
-
-          <div className="form-widget">
-            <div>
-              <label htmlFor="email">Email : </label>
-              <input size={50} id="email" type="text" value={session.user.email} disabled />
-            </div>
-            <div>
-              <label htmlFor="username">Username</label>
-              <input className="border"
-                id="username"
-                type="text"
-                value={username || ''}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="website" className="">Website</label>
-              <input className="border"
-                id="website"
-                type="website"
-                value={website || ''}
-                onChange={(e) => setWebsite(e.target.value)}
-              />
-            </div>
-
-            <div className='flex justify-center'>
-              <button
-                className="button primary block"
-                onClick={() => updateProfile({ username, website, avatar_url })}
-                disabled={loading}
-              >
-                {loading ? 'Loading ...' : 'Update'}
-              </button>
-            </div>
-
-            <div className='flex justify-center'>
-              <button className="button block" onClick={() => supabase.auth.signOut()}>
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
+        <label htmlFor="email">Email</label>
+        <input id="email" type="text" value={session.user.email} disabled />
       </div>
-      <Footer />
-    </>
+      <div>
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={username || ''}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          type="url"
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
 
+      <div>
+        <button
+          className="button primary block"
+          onClick={() => updateProfile({ username, website, avatar_url })}
+          disabled={loading}
+        >
+          {loading ? 'Loading ...' : 'Update'}
+        </button>
+      </div>
+
+      <div>
+        <button className="button block" onClick={() => supabase.auth.signOut()}>
+          Sign Out
+        </button>
+      </div>
+    </div>
   )
 }

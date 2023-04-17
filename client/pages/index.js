@@ -8,6 +8,7 @@ import presentation_img1 from '/img/presentation_img1.jpg'
 import presentation_img2 from '/img/presentation_img2.jpg'
 import presentation_img3 from '/img/presentation_img3.jpg'
 import Carousel from '../components/Carousel';
+import { Auth } from '@supabase/auth-ui-react'
 
 const images = [
   banner,
