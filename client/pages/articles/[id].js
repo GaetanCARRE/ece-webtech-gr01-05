@@ -5,13 +5,19 @@ import { useState } from 'react';
 
 export default function Article({ article }) {
 
-    const [active, setActive] = useState(false);
-
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
 
     const handleClickSize = (index) => {
         setActiveSizeIndex(index);
     };
+
+    //define update checkout function which add artciles id and size to checkout state
+    // const updateCheckout = () => {
+    //     if (activeSizeIndex != -1) {
+    //         setCheckout([...checkout, { id: article.id, size: sizes[activeSizeIndex].label }])
+    //     }
+    // }
+
 
     if (article.type == "CLOTHES") {
         var sizes = [
