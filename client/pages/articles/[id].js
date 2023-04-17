@@ -32,10 +32,10 @@ export default function Article({ article }) {
     } else if (article.type == "SHOES") {
 
         var sizes = [
-            { label: '10', stock: article.stock_xl },
-            { label: '11', stock: article.stock_xl },
-            { label: '12', stock: article.stock_xl },
-            { label: '13', stock: article.stock_xl },
+            { label: '10', stock: article.stock_10 },
+            { label: '11', stock: article.stock_11 },
+            { label: '12', stock: article.stock_12 },
+            { label: '13', stock: article.stock_13 },
         ];
     }
     else {
