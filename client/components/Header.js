@@ -11,7 +11,9 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-
+import Image from 'next/image';
+import logo from '/img/logo.png'
+import Link from 'next/link'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -33,14 +35,15 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = useSupabaseClient()
   const user = useUser()
-  return (
+    return (
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
+            <Image src={logo}
+              alt="Picture of the author" className="h-12 w-auto"/>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -53,18 +56,18 @@ export default function Header() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="/articles" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="/articles" className="text-sm font-semibold leading-6 text-gray-900">
             Articles
-          </a>
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-            Home
-          </a>
-          <a href="/contacts" className="text-sm font-semibold leading-6 text-gray-900">
+          </Link>
+          <Link href="/profile" className="text-sm font-semibold leading-6 text-gray-900">
+            Profile
+          </Link>
+          <Link href="/contacts" className="text-sm font-semibold leading-6 text-gray-900">
             Contacts
-          </a>
-          <a href="/about" className="text-sm font-semibold leading-6 text-gray-900">
+          </Link>
+          <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
             About
-          </a>
+          </Link>
         </Popover.Group>
         {user ? (
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -75,9 +78,9 @@ export default function Header() {
           
         ) : (
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+            <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         )}
 
@@ -86,14 +89,15 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+              <Image className='h-8 w-auto'
+                    src={logo}
+                    alt="Picture of the author"
+                    width={580}
+                    height={725}
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -131,32 +135,32 @@ export default function Header() {
                     </>
                   )}
                 </Disclosure>
-                <a
+                <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Home
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Marketplace
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Company
-                </a>
+                </Link>
               </div>
               <div className="py-6">
-                <a
+                <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </div>
