@@ -1,11 +1,10 @@
-import articlesData from '../data/articles.json';
 import Link from 'next/link';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import { supabase } from '../supabase/supabase.js';
 
-export default function ArticlesPage() {
-  const articles = articlesData;
+export default function ArticlesPage({ articles }) {
   return (
     <>
       <Header />
@@ -37,8 +36,12 @@ export default function ArticlesPage() {
 }
 
 export async function getStaticProps(ctx) {
-  const response = await fetch(`http://localhost:3000/api/articles`)
-  const articles = await response.json()
+  const { data, error } = await supabase.from('articles').select('*');
+  if (error) {
+    console.error(error);
+    alert(error)
+  }
+  const articles = data;
   return {
     props: {
       articles: articles
