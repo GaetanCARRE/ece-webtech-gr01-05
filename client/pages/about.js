@@ -18,7 +18,6 @@ export default function AboutPage() {
         <p className='text-black text-lg px-20 py-5'>
           Whether you&apos;re a seasoned sneakerhead or just dipping your toes into the world of streetwear fashion, we&apos;ve got something for you. Shop our collection today and join the global community of fashion-forward individuals who are making their mark on the world, one street at a time.
         </p>
-        <p>Click <Link href="/">here</Link> to go back to the homepage.</p>
       </div>
       <Footer />
       </div>
