@@ -7,9 +7,9 @@
 Dans ce Lab, nous allons travailler avec Next.js et React pour comprendre l'importance des différentes stratégies de récupération de données et leur impact sur les performances de notre application et leur importance pour améliorer l'expérience utilisateur.
 
 ### Part 1: Utiliser SSG
-Nous allons commencer par revoir la page `/pages/articles.js` de notre application. Cette page est actuellement implémentée avec CSR, ce qui signifie que les articles ne sont pas inclus dans la page générée au moment de la construction. Nous allons réimplémenter la page en utilisant la stratégie SSG pour inclure les articles dans la page générée cela permettra en plus d'améliorer les performances de notre application, d'être référencé par les moteurs de recherche.
+Nous allons commencer par revoir la page `/pages/articles.js` de notre application. Cette page est actuellement implémentée avec CSR, ce qui signifie que les articles ne sont pas inclus dans la page générée au moment de la construction. Nous allons réimplémenter la page en utilisant la stratégie SSG pour inclure les articles dans la page générée cela permettra en plus d'améliorer les performances de notre application, d'être référencé par les moteurs de recherche. Après avoir revu la page `/pages/articles.js` on va revoir la page de chaque article. Du faites qu'on affiche pas mal d'informations (4 images, récupération de data supabase...) il est préférable d'utiliser la technologie SSG pour que ces éléments soit chargés pendant le build et avoir un affichage rapide des éléments de la page. On intègre donc les méthodes `getStaticProps` et `getStaticPaths`vu qu'il s'agit de routes dynamiques.
 
-![Untitled](/img/screen19.png)
+![Untitled](/assets/screen19.png)
 
 ### Part 2: Build notre application
 

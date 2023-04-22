@@ -2,6 +2,8 @@
 
 👋 Bienvenue sur notre projet de technologie web !
 
+🧑‍🎓 By CARRE Gaëtan (@GaetanCARRE) et BOUHACINA Adam (@RBJGOAT)
+
 📝 Ce fichier README accompagne les différents travaux pratiques réalisés par CARRE Gaetan et BOUHACINA Adam dans le cadre de la matière de technologie web.
 
 💻 Pour une meilleure compréhension et pour être plus opérationnels lors de la réalisation du projet, nous avons décidé de travailler sur deux branches distinctes pour chaque TP : Adam sur la branche adamtp et Gaetan sur la branche dev.
