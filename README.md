@@ -4,21 +4,38 @@
 
 🧑‍🎓 By CARRE Gaëtan (@GaetanCARRE) et BOUHACINA Adam (@RBJGOAT)
 
-📝 Ce fichier README accompagne les différents travaux pratiques réalisés par CARRE Gaetan et BOUHACINA Adam dans le cadre de la matière de technologie web.
+📝 Ce fichier README accompagne notre projet de développement web, réalisé par CARRE Gaetan et BOUHACINA Adam dans le cadre de la matière de technologie web.
 
-💻 Pour une meilleure compréhension et pour être plus opérationnels lors de la réalisation du projet, nous avons décidé de travailler sur deux branches distinctes pour chaque TP : Adam sur la branche adamtp et Gaetan sur la branche dev.
+🌐 Notre objectif à travers ce projet est de découvrir et de maîtriser les technologies web modernes, telles que HTML, CSS, JavaScript et bien d'autres encore. Nous allons également explorer des frameworks populaires tels que React, Angular, Vue.js, etc.
 
-🌐 Notre objectif à travers ces TP est de découvrir et de maîtriser les technologies web modernes, telles que HTML, CSS, JavaScript et bien d'autres encore. Nous allons également explorer des frameworks populaires tels que React, Angular, Vue.js, etc.
-
-💡 Chacun des TP sera accompagné d'un sujet précis, qui nous permettra de mettre en pratique les concepts étudiés en cours. Nous allons créer des sites web interactifs, des applications web, et bien plus encore !
+💡 Notre projet consiste en la création d'un site web interactif pour une boutique en ligne fictive, où les utilisateurs pourront trouver des informations sur l'entreprise, ses produits, ainsi que des moyens de la contacter.
 
 🤝 Nous espérons que ce projet nous permettra de travailler en équipe de manière efficace, de développer notre créativité et de nous familiariser avec les technologies web essentielles pour le développement d'applications modernes.
 
-📌 Ce fichier README sera mis à jour à mesure que nous avancerons dans les TP, avec les instructions nécessaires pour exécuter nos projets et les détails de chaque TP.
+📌 Ce fichier README sera mis à jour à mesure que nous avancerons dans le projet, avec les instructions nécessaires pour exécuter notre site web et les détails de chaque étape.
 
 🚀 Nous sommes impatients de commencer ce voyage passionnant dans le monde de la technologie web ! Attention décollage !
 
-👨‍💻 README des différentes TP
+## 📈📝 Auto-évaluation
+#### Applications development 
+- [X] Home page
+- [X] Login and profile page
+- [ ] New comment creation
+- [ ] Ressource access control
+- [ ] Article modification 
+- [ ] Artical removal 
+- [ ] Comment modification
+- [ ] Comment removal
+- [ ] WYSIWYG integration
+- [ ] Gravatar integration
+- [ ] Light / dark theme 
+- [ ] Accent color selection
+#### Bonus
+- [X] Shopping cart
+- [X] Articles pages (all+per article)
+
+
+## 🔍💻 Readme
 
 * [TP2: NodeJs](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab1_nodejs.md)
 * [TP3: WebAPI](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab2_webapi.md)
