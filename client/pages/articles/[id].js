@@ -1,25 +1,26 @@
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
-import { useState } from 'react';
 import { supabase } from '../../supabase/supabase.js';
+import { useState, useContext } from 'react';  // Ajout de useContext
+import CheckoutContext from '../../components/CheckoutContext';
+
 
 
 export default function Article({ article }) {
 
+    const { checkout, setCheckout } = useContext(CheckoutContext);
+    console.log(checkout);
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
-
     const handleClickSize = (index) => {
         setActiveSizeIndex(index);
     };
-
-    //define update checkout function which add artciles id and size to checkout state
-    // const updateCheckout = () => {
-    //     if (activeSizeIndex != -1) {
-    //         setCheckout([...checkout, { id: article.id, size: sizes[activeSizeIndex].label }])
-    //     }
-    // }
-
+    const handleClickAddToCart = () => {
+        if (activeSizeIndex !== -1) {
+            const newArticle = { id: article.id, size: sizes[activeSizeIndex].label };
+            setCheckout([...checkout, newArticle]);
+        }
+    };
 
     if (article.type == "CLOTHES") {
         var sizes = [
@@ -94,7 +95,7 @@ export default function Article({ article }) {
                         ))}
                     </div>
 
-                    <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full'>
+                    <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full' onClick={handleClickAddToCart}>
                         Ajouter au panier
                     </button>
                     <div>

@@ -35,14 +35,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = useSupabaseClient()
   const user = useUser()
-    return (
+  return (
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <Image src={logo}
-              alt="Picture of the author" className="h-12 w-auto"/>
+              alt="Picture of the author" className="h-12 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -68,21 +68,31 @@ export default function Header() {
           <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
             About
           </Link>
-        </Popover.Group>
-        {user ? (
+          {user ? (
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button className="button block bg-transparent text-sm font-semibold leading-6 text-gray-900" onClick={() => supabase.auth.signOut()}>
-            Log out <span aria-hidden="true">&larr;</span>
-          </button>
-        </div>
-          
+            <button className="button block bg-transparent text-sm font-semibold leading-6 text-gray-900" onClick={() => supabase.auth.signOut()}>
+              Log out <span aria-hidden="true">&larr;</span>
+            </button>
+          </div>
+
         ) : (
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
+
         )}
+        </Popover.Group>
+        
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <Link href="/checkout" className="text-sm font-semibold leading-6 text-gray-900">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+              </svg>
+            </Link>
+          </div>
+
 
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -92,10 +102,10 @@ export default function Header() {
             <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <Image className='h-8 w-auto'
-                    src={logo}
-                    alt="Picture of the author"
-                    width={580}
-                    height={725}
+                src={logo}
+                alt="Picture of the author"
+                width={580}
+                height={725}
               />
             </Link>
             <button
