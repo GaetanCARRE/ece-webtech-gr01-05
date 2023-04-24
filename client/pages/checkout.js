@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CheckoutContext from '../components/CheckoutContext';
 import { useContext } from 'react';
-import { parseCookies } from "../helpers/"
 export default function CheckoutPage() {
   const { checkout } = useContext(CheckoutContext);
   console.log(checkout);
@@ -15,7 +14,6 @@ export default function CheckoutPage() {
           <h1 className="text-black py-10 text-center text-3xl font-bold">
             Checkout
           </h1>
-          <p>Data from cookie: {checkout}</p>
           <div className="flex flex-col items-center">
             {checkout.map((article) => (
               <div key={article.id} className="flex flex-col items-center">
@@ -30,7 +28,6 @@ export default function CheckoutPage() {
           <h1 className="text-black text-3xl font-bold">
             Your cart is empty
           </h1>
-          <p>Data from cookie: {checkout}</p>
         </div>
       )}
 
@@ -38,19 +35,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-CheckoutPage.getInitialProps = async ({ req, res }) => {
-  const data = parseCookies(req)
-  console.log(data)
-  if (res) {
-    if (Object.keys(data).length === 0 && data.constructor === Object) {
-      res.writeHead(301, { Location: "/" })
-      res.end()
-    }
-  }
-
-  return {
-    checkout: data && data,
-  }
-}
-
