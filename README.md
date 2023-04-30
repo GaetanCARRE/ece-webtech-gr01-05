@@ -17,18 +17,18 @@
 🚀 Nous sommes impatients de commencer ce voyage passionnant dans le monde de la technologie web ! Attention décollage !
 
 ## 📈📝 Auto-évaluation
-#### Applications development 
+#### Applications development
 - [X] Home page
 - [X] Login and profile page
 - [ ] New comment creation
 - [ ] Ressource access control
-- [ ] Article modification 
-- [ ] Artical removal 
+- [ ] Article modification
+- [ ] Artical removal
 - [ ] Comment modification
 - [ ] Comment removal
 - [ ] WYSIWYG integration
 - [ ] Gravatar integration
-- [ ] Light / dark theme 
+- [ ] Light / dark theme
 - [ ] Accent color selection
 #### Bonus
 - [X] Shopping cart
@@ -37,8 +37,3 @@
 
 ## 🔍💻 Readme
 
-* [TP2: NodeJs](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab1_nodejs.md)
-* [TP3: WebAPI](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab2_webapi.md)
-* [TP4: Framework](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab3_framework.md)
-* [TP5: Rendering](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab4_rendering.md)
-* [TP6: State-form](https://github.com/GaetanCARRE/ece-webtech-gr01-05/blob/main/readme_lab/lab6_stateform.md)
