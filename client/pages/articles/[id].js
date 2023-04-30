@@ -7,10 +7,11 @@ import CheckoutContext from '../../components/CheckoutContext';
 
 
 
-export default function Article({ article }) {
+export default function Article({ article, comment }) {
 
     const { checkout, setCheckout } = useContext(CheckoutContext);
     console.log(checkout);
+    console.log(comment);
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
     const handleClickSize = (index) => {
         setActiveSizeIndex(index);
@@ -21,6 +22,32 @@ export default function Article({ article }) {
             setCheckout([...checkout, newArticle]);
         }
     };
+
+const [fullname, setFullname] = useState('');
+  const [message, setMessage] = useState('');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      const { data, error } = await supabase.from('comments').insert({
+        fullname,
+        message,
+        article_id: article.id,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      console.log('message submitted:', data);
+      alert('Thank you for your message!');
+      setFullname('');
+      setMessage('');
+    } catch (error) {
+      console.log(error);
+      alert(error.error_description || error.message);
+    }
+  }
 
     if (article.type == "CLOTHES") {
         var sizes = [
@@ -104,6 +131,75 @@ export default function Article({ article }) {
                     </div>
                 </div>
             </div>
+            
+            <div>
+                <h1 className='text-black text-center text-xl text-bold pb-2 px-10 '>Commentaires</h1>
+                <div className='border border-gray-200 rounded-xl mx-auto my-10 grid grid-cols-1 gap-x-5 mx-32 py-10'>
+                    {comment.map((comment) => (
+                        <div key={comment.id} className='text-black flex flex-col justify-start'>
+                            <div className='text-black text-left mx-auto w-80'>
+                                <h1 className='text-black text-sm text-bold  font-bold'>{comment.fullname}</h1>
+                                <p className='text-gray-800 text-sm pb-2'>{comment.created_at}</p>
+                                <p className='text-gray-800 text-sm'>{comment.message}</p>
+
+                            </div>
+                            <hr class="h-px mx-auto my-8 bg-gray-200 border-0 dark:bg-gray-700 mx-5 w-80" />
+                        </div>
+
+                    ))}
+                </div>
+            </div>
+            <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div className="sm:col-span-2">
+                        <label
+                            htmlFor="first-name"
+                            className="block text-sm font-semibold leading-6 text-gray-900"
+                        >
+                            Full name
+                        </label>
+                        <div className="mt-2.5">
+                            <input
+                                type="text"
+                                name="first-name"
+                                id="first-name"
+                                autoComplete="given-name"
+                                value={fullname}
+                                onChange={(event) => setFullname(event.target.value)}
+                                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div className="sm:col-span-2">
+                        <label
+                            htmlFor="message"
+                            className="block text-sm font-semibold leading-6 text-gray-900"
+                        >
+                            Message
+                        </label>
+                        <div className="mt-2.5">
+                            <textarea
+                                name="message"
+                                id="message"
+                                rows="4"
+                                value={message}
+                                onChange={(event) => setMessage(event.target.value)}
+                                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div className="mt-8 text-center sm:mt-10 mb-10">
+                    <button
+                        type="submit"
+                        className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
+                    >
+                        Send message
+                    </button>
+                </div>
+            </form>
             <Footer />
         </>
 
@@ -113,23 +209,32 @@ export default function Article({ article }) {
 
 export async function getStaticProps(ctx) {
 
-    const { data, error } = await supabase
+    const { data: article, error } = await supabase
         .from('articles')
         .select('*')
         .eq('id', ctx.params.id)
         .single();
-    if (!data) {
+    if (!article) {
         alert('Article not found');
     }
-    console.log(data);
+    console.log(article);
     if (error) {
         console.error(error);
         alert(error.message)
     }
-    const article = data
+    const { data: comment, error: errorComment } = await supabase
+        .from('comments')
+        .select('*')
+        .eq('article_id', ctx.params.id)
+    if (errorComment) {
+        console.error(errorComment);
+        alert(errorComment.message)
+    }
+
     return {
         props: {
-            article: article
+            article: article,
+            comment: comment
         }
     };
 }
