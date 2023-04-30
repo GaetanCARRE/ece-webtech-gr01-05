@@ -4,12 +4,14 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState, useContext } from 'react';  // Ajout de useContext
 import CheckoutContext from '../../components/CheckoutContext';
-
+import { useRouter } from 'next/router';
+import { useSWRConfig } from 'swr';
 
 
 export default function Article({ article, comment }) {
 
     const { checkout, setCheckout } = useContext(CheckoutContext);
+    const { mutate } = useSWRConfig();
     console.log(checkout);
     console.log(comment);
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
@@ -22,32 +24,36 @@ export default function Article({ article, comment }) {
             setCheckout([...checkout, newArticle]);
         }
     };
+    const router = useRouter();
 
-const [fullname, setFullname] = useState('');
-  const [message, setMessage] = useState('');
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-    try {
-      const { data, error } = await supabase.from('comments').insert({
-        fullname,
-        message,
-        article_id: article.id,
-      });
+    const [fullname, setFullname] = useState('');
+    const [message, setMessage] = useState('');
 
-      if (error) {
-        throw error;
-      }
+    async function handleSubmit(event) {
+        event.preventDefault();
+        try {
+            const { data, error } = await supabase.from('comments').insert({
+                fullname,
+                message,
+                article_id: article.id,
+            });
 
-      console.log('message submitted:', data);
-      alert('Thank you for your message!');
-      setFullname('');
-      setMessage('');
-    } catch (error) {
-      console.log(error);
-      alert(error.error_description || error.message);
+            if (error) {
+                throw error;
+            }
+
+            console.log('message submitted:', data);
+            alert('Thank you for your message!');
+            mutate(`/articles/${article.id}`);
+            router.replace(router.asPath);
+            setFullname('');
+            setMessage('');
+        } catch (error) {
+            console.log(error);
+            alert(error.error_description || error.message);
+        }
     }
-  }
 
     if (article.type == "CLOTHES") {
         var sizes = [
@@ -131,7 +137,7 @@ const [fullname, setFullname] = useState('');
                     </div>
                 </div>
             </div>
-            
+
             <div>
                 <h1 className='text-black text-center text-xl text-bold pb-2 px-10 '>Commentaires</h1>
                 <div className='border border-gray-200 rounded-xl mx-auto my-10 grid grid-cols-1 gap-x-5 mx-32 py-10'>
@@ -143,7 +149,7 @@ const [fullname, setFullname] = useState('');
                                 <p className='text-gray-800 text-sm'>{comment.message}</p>
 
                             </div>
-                            <hr class="h-px mx-auto my-8 bg-gray-200 border-0 dark:bg-gray-700 mx-5 w-80" />
+                            <hr className="h-px mx-auto my-8 bg-gray-200 border-0 dark:bg-gray-700 mx-5 w-80" />
                         </div>
 
                     ))}
@@ -235,7 +241,9 @@ export async function getStaticProps(ctx) {
         props: {
             article: article,
             comment: comment
-        }
+        },
+        revalidate: true
+
     };
 }
 
