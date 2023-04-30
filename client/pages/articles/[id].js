@@ -4,16 +4,12 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState, useContext } from 'react';  // Ajout de useContext
 import CheckoutContext from '../../components/CheckoutContext';
-import { useRouter } from 'next/router';
-import { useSWRConfig } from 'swr';
 
 
-export default function Article({ article, comment }) {
+export default function Article({ article }) {
 
     const { checkout, setCheckout } = useContext(CheckoutContext);
-    const { mutate } = useSWRConfig();
-    console.log(checkout);
-    console.log(comment);
+
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
     const handleClickSize = (index) => {
         setActiveSizeIndex(index);
@@ -24,11 +20,26 @@ export default function Article({ article, comment }) {
             setCheckout([...checkout, newArticle]);
         }
     };
-    const router = useRouter();
-
 
     const [fullname, setFullname] = useState('');
     const [message, setMessage] = useState('');
+    const [comments, setComments] = useState([]);
+
+
+    const fetchComments = async () => {
+      const { data: comments, error } = await supabase
+        .from("comments")
+        .select()
+        .eq("article_id", article.id);
+      if (error) {
+        console.error(error);
+      } else {
+        setComments(comments);
+      }
+    };
+    fetchComments();
+
+
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -38,15 +49,16 @@ export default function Article({ article, comment }) {
                 message,
                 article_id: article.id,
             });
-
+            if (data) {
+                setComments([...comments, data[0]]);
+            }
             if (error) {
                 throw error;
             }
 
             console.log('message submitted:', data);
             alert('Thank you for your message!');
-            mutate(`/articles/${article.id}`);
-            router.replace(router.asPath);
+            fetchComments();
             setFullname('');
             setMessage('');
         } catch (error) {
@@ -141,7 +153,7 @@ export default function Article({ article, comment }) {
             <div>
                 <h1 className='text-black text-center text-xl text-bold pb-2 px-10 '>Commentaires</h1>
                 <div className='border border-gray-200 rounded-xl mx-auto my-10 grid grid-cols-1 gap-x-5 mx-32 py-10'>
-                    {comment.map((comment) => (
+                    {comments.map((comment) => (
                         <div key={comment.id} className='text-black flex flex-col justify-start'>
                             <div className='text-black text-left mx-auto w-80'>
                                 <h1 className='text-black text-sm text-bold  font-bold'>{comment.fullname}</h1>
@@ -228,21 +240,10 @@ export async function getStaticProps(ctx) {
         console.error(error);
         alert(error.message)
     }
-    const { data: comment, error: errorComment } = await supabase
-        .from('comments')
-        .select('*')
-        .eq('article_id', ctx.params.id)
-    if (errorComment) {
-        console.error(errorComment);
-        alert(errorComment.message)
-    }
-
     return {
         props: {
             article: article,
-            comment: comment
         },
-        revalidate: true
 
     };
 }
