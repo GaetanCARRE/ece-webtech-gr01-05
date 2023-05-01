@@ -6,7 +6,7 @@ import { useState, useContext } from 'react';  // Ajout de useContext
 import CheckoutContext from '../../components/CheckoutContext';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { TbEdit } from 'react-icons/tb';
-
+import { MdDeleteOutline } from 'react-icons/md';
 export default function Article({ article }) {
 
     const { checkout, setCheckout } = useContext(CheckoutContext);
@@ -57,6 +57,17 @@ export default function Article({ article }) {
             setEditId(id);
         }
     };
+
+    const deleteComment = async (id) => {
+        try {
+            await supabase.from("comments").delete().eq("id", id);
+            setComments(comments.filter((comment) => comment.id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+        fetchComments();
+    };
+
 
 
     async function handleSubmit(event) {
@@ -230,9 +241,14 @@ export default function Article({ article }) {
                                 <div className='flex flex-row'>
                                     <h1 className='text-black text-sm text-bold font-bold w-80'>{comment.fullname}</h1>
                                     {user && comment.user_id === user.id && (
+                                    <div className='justify-end'>
                                         <button onClick={() => editComment(comment.id)}>
-                                            <TbEdit className='justify-end' />
+                                            <TbEdit/>
                                         </button>
+                                        <button onClick={() => deleteComment(comment.id)}>
+                                            <MdDeleteOutline/>
+                                        </button>
+                                    </div>
                                     )}
                                 </div>
                                 <p className='text-gray-800 text-sm pb-2'>{comment.created_at}</p>
