@@ -21,6 +21,7 @@ const Login = () => {
       <div className="container text-black" style={{ padding: '50px 0 100px 0' }}>
         {!session ? (
           <Auth
+            redirectTo="/profile"
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             providers={['google']}

@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState, useContext } from 'react';  // Ajout de useContext
 import CheckoutContext from '../../components/CheckoutContext';
-
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { TbEdit } from 'react-icons/tb';
 
 export default function Article({ article }) {
 
@@ -20,25 +21,42 @@ export default function Article({ article }) {
             setCheckout([...checkout, newArticle]);
         }
     };
-
+    const [isEditing, setIsEditing] = useState(false);
+    const [editId, setEditId] = useState(null);
     const [fullname, setFullname] = useState('');
+    const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [comments, setComments] = useState([]);
 
+    const supabase = useSupabaseClient()
+    const user = useUser()
 
     const fetchComments = async () => {
-      const { data: comments, error } = await supabase
-        .from("comments")
-        .select()
-        .eq("article_id", article.id);
-      if (error) {
-        console.error(error);
-      } else {
-        setComments(comments);
-      }
+        const { data: comments, error } = await supabase
+            .from("comments")
+            .select()
+            .eq("article_id", article.id);
+        if (error) {
+            console.error(error);
+        } else {
+            setComments(comments);
+        }
     };
     fetchComments();
 
+    const editComment = async (id) => {
+        const { data: comment, error } = await supabase
+            .from("comments")
+            .select()
+            .eq("id", id);
+        if (error) {
+            console.error(error);
+        } else {
+            setMessage(comment[0].message);
+            setIsEditing(true);
+            setEditId(id);
+        }
+    };
 
 
     async function handleSubmit(event) {
@@ -47,6 +65,7 @@ export default function Article({ article }) {
             const { data, error } = await supabase.from('comments').insert({
                 fullname,
                 message,
+                email,
                 article_id: article.id,
             });
             if (data) {
@@ -60,11 +79,63 @@ export default function Article({ article }) {
             alert('Thank you for your message!');
             fetchComments();
             setFullname('');
+            setEmail('');
             setMessage('');
         } catch (error) {
             console.log(error);
             alert(error.error_description || error.message);
         }
+    }
+
+    async function handleSubmitConnected(event) {
+        event.preventDefault();
+        try {
+            // join the user id with profiles.id
+            const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+            const { data, error } = await supabase.from('comments').insert({
+                fullname: profile.full_name,
+                message,
+                email: user.email,
+                article_id: article.id,
+                user_id: user.id,
+            });
+            if (data) {
+                setComments([...comments, data[0]]);
+            }
+            if (error) {
+                throw error;
+            }
+
+            console.log('message submitted:', data);
+            alert('Thank you for your message!');
+            fetchComments();
+            setFullname('');
+            setEmail('');
+            setMessage('');
+        } catch (error) {
+            alert("Please update your profile to add a comment");
+        }
+    }
+
+    async function handleSubmitEdit(event) {
+        event.preventDefault();
+        try {
+            const { data, error } = await supabase.from('comments').update({
+                message,
+            }).eq('id', editId);
+            if (data) {
+                setComments([...comments, data[0]]);
+            }
+            if (error) {
+                throw error;
+            }
+        } catch (error) {
+            console.log(error);
+            alert(error.error_description || error.message);
+        }
+        setIsEditing(false);
+        setEditId(null);
+        fetchComments();
     }
 
     if (article.type == "CLOTHES") {
@@ -151,73 +222,171 @@ export default function Article({ article }) {
             </div>
 
             <div>
-                <h1 className='text-black text-center text-xl text-bold pb-2 px-10 '>Commentaires</h1>
+                <h1 className='text-black text-center text-xl text-bold pb-2 px-10'>Commentaires</h1>
                 <div className='border border-gray-200 rounded-xl mx-auto my-10 grid grid-cols-1 gap-x-5 mx-32 py-10'>
                     {comments.map((comment) => (
                         <div key={comment.id} className='text-black flex flex-col justify-start'>
                             <div className='text-black text-left mx-auto w-80'>
-                                <h1 className='text-black text-sm text-bold  font-bold'>{comment.fullname}</h1>
+                                <div className='flex flex-row'>
+                                    <h1 className='text-black text-sm text-bold font-bold w-80'>{comment.fullname}</h1>
+                                    {user && comment.user_id === user.id && (
+                                        <button onClick={() => editComment(comment.id)}>
+                                            <TbEdit className='justify-end' />
+                                        </button>
+                                    )}
+                                </div>
                                 <p className='text-gray-800 text-sm pb-2'>{comment.created_at}</p>
                                 <p className='text-gray-800 text-sm'>{comment.message}</p>
-
                             </div>
                             <hr className="h-px mx-auto my-8 bg-gray-200 border-0 dark:bg-gray-700 mx-5 w-80" />
                         </div>
-
                     ))}
                 </div>
             </div>
-            <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
-                <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                    <div className="sm:col-span-2">
-                        <label
-                            htmlFor="first-name"
-                            className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                            Full name
-                        </label>
-                        <div className="mt-2.5">
-                            <input
-                                type="text"
-                                name="first-name"
-                                id="first-name"
-                                autoComplete="given-name"
-                                value={fullname}
-                                onChange={(event) => setFullname(event.target.value)}
-                                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
-                                required
-                            />
+
+            {user ? (
+                isEditing ? (
+                    <form onSubmit={handleSubmitEdit} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="message"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Message
+                            </label>
+                            <div className="mt-2.5">
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    rows="4"
+                                    value={message}
+                                    onChange={(event) => setMessage(event.target.value)}
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                    required
+                                ></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div className="sm:col-span-2">
-                        <label
-                            htmlFor="message"
-                            className="block text-sm font-semibold leading-6 text-gray-900"
-                        >
-                            Message
-                        </label>
-                        <div className="mt-2.5">
-                            <textarea
-                                name="message"
-                                id="message"
-                                rows="4"
-                                value={message}
-                                onChange={(event) => setMessage(event.target.value)}
-                                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
-                                required
-                            ></textarea>
+                    <div className="mt-8 text-center sm:mt-10 mb-10">
+                            <button
+                                type="submit"
+                                className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
+                            >
+                                Update message
+                            </button>
+                    </div>
+                </form>
+                ) : (
+                
+                <form onSubmit={handleSubmitConnected} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="message"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Message
+                            </label>
+                            <div className="mt-2.5">
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    rows="4"
+                                    value={message}
+                                    onChange={(event) => setMessage(event.target.value)}
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                    required
+                                ></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="mt-8 text-center sm:mt-10 mb-10">
-                    <button
-                        type="submit"
-                        className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
-                    >
-                        Send message
-                    </button>
-                </div>
-            </form>
+                    <div className="mt-8 text-center sm:mt-10 mb-10">
+                            <button
+                                type="submit"
+                                className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
+                            >
+                                Send message
+                            </button>
+                    </div>
+                </form>
+            )
+
+            ) : (
+
+                <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="first-name"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Full name
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    type="text"
+                                    name="first-name"
+                                    id="first-name"
+                                    autoComplete="given-name"
+                                    value={fullname}
+                                    onChange={(event) => setFullname(event.target.value)}
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="first-name"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Email
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    type="email"
+                                    name="first-name"
+                                    id="first-name"
+                                    autoComplete="given-name"
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="message"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Message
+                            </label>
+                            <div className="mt-2.5">
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    rows="4"
+                                    value={message}
+                                    onChange={(event) => setMessage(event.target.value)}
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                    required
+                                ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-8 text-center sm:mt-10 mb-10">
+                        <button
+                            type="submit"
+                            className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
+                        >
+                            Send message
+                        </button>
+                    </div>
+                </form>
+
+            )}
             <Footer />
         </>
 

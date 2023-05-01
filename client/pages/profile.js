@@ -3,12 +3,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useRouter } from 'next/router'
 
 export default function Profile({ user }) {
   const supabase = useSupabaseClient()
   const [username, setUsername] = useState(user.username)
   const [full_name, setFullname] = useState(user.full_name)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     getProfile()
@@ -49,6 +51,8 @@ export default function Profile({ user }) {
         username,
         full_name,
         updated_at: new Date().toISOString(),
+        email: user.email,
+
       }
 
       let { error } = await supabase.from('profiles').upsert(updates)
@@ -59,12 +63,12 @@ export default function Profile({ user }) {
       console.log(error)
     } finally {
       setLoading(false)
+      router.push('/')
     }
   }
   return (
 <>
     <div className='flex flex-col h-screen'>
-      <Header />
       <div className="flex-grow form-widget isolate bg-white px-6 py-24 sm:py-20 lg:px-8">
         <div
           className="absolute inset-x-0 top-[-5rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"

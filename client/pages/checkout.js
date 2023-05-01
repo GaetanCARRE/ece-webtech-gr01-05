@@ -84,7 +84,7 @@ export default function CheckoutPage() {
       ) : (
         <div className="flex-grow flex flex-col items-center justify-center">
           <h1 className="text-black text-3xl font-bold">
-            Your cart is empty
+            Your checkout is empty
           </h1>
         </div>
       )}
