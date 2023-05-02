@@ -89,11 +89,13 @@ export default function Header() {
 
         )}
         </Popover.Group>
+        <Link href="/profile">
         {gravatarUrl && (
               <div className="h-12 w-12">
                 <Image src={gravatarUrl} alt="Avatar" width={64} height={64} className="rounded-full ml-2" />
               </div>
         )}
+        </Link>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link href="/checkout" className="text-sm font-semibold leading-6 text-gray-900">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

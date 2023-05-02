@@ -4,6 +4,8 @@ import Footer from '../components/Footer';
 import { useState, useEffect } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
+import Image from 'next/image';
+import gravatar from 'gravatar'
 
 export default function Profile({ user }) {
   const supabase = useSupabaseClient()
@@ -11,10 +13,13 @@ export default function Profile({ user }) {
   const [full_name, setFullname] = useState(user.full_name)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
+  
 
   useEffect(() => {
     getProfile()
   }, [user])
+
+  const gravatarUrl = gravatar.url(user.email, { s: '200', r: 'pg', d: 'retro' })
 
   async function getProfile() {
     try {
@@ -84,10 +89,13 @@ export default function Profile({ user }) {
         </div>
         <div className="mx-auto max-w-2xl text-center mb-20">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Contact Us
+            Profile
           </h2>
         </div>
-        
+        <div className="flex items-center flex-col">
+          <h2 className="text-lg font-medium text-gray-900 mb-2">User Profile Picture</h2>
+          <Image src={`https:${gravatarUrl}`}alt='User Profile Picture' width={100} height={100} className='rounded-full'/>
+        </div>
           <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
               <label

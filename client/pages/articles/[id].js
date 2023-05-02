@@ -240,7 +240,7 @@ export default function Article({ article }) {
                         <div key={comment.id} className='text-black flex flex-col justify-start'>
                             <div className='text-black text-left mx-auto w-80'>
                                 <div className='flex flex-row'>
-                                <Image src={`https:${gravatar.url(user.email, { s: '100', d: 'retro' })}`} alt='User Profile Picture' width={40} height={40} className='rounded-full'/>
+                                <Image src={`https:${gravatar.url(comment.email, { s: '100', d: 'retro' })}`} alt='User Profile Picture' width={40} height={40} className='rounded-full'/>
                                     <h1 className='text-black text-sm text-bold font-bold w-80'>{comment.fullname}</h1>
                                     {user && comment.user_id === user.id && (
                                     <div className='justify-end'>
