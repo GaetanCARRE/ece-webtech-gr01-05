@@ -28,7 +28,7 @@
 1. Ouvrez un terminal et utilisez la commande ```npm install``` pour installer toutes les dépendances requises pour le projet.
 1. Pour lancer le site, vous devez d'abord le build en utilisant la commande ```npm run build```, puis vous pouvez le démarrer en utilisant la commande: 
     - ```npm run start``` si vous souhaitez simplement visualiser le site sans              modifications. 
-    -```npm run dev```si vous envisagez de modifier le site, cela lance le serveur de développement qui surveille les modifications et recompile automatiquement le site.
+    - ```npm run dev```si vous envisagez de modifier le site, cela lance le serveur de développement qui surveille les modifications et recompile automatiquement le site.
 
 ## 💻 Usage <a name="usage"></a>
 - Naviguer à travers les différents pages du site
