@@ -33,7 +33,7 @@ export default function Article({ article }) {
 
     const supabase = useSupabaseClient()
     const user = useUser()
-    
+
 
     const fetchComments = async () => {
         const { data: comments, error } = await supabase
@@ -239,22 +239,28 @@ export default function Article({ article }) {
                     {comments.map((comment) => (
                         <div key={comment.id} className='text-black flex flex-col justify-start'>
                             <div className='text-black text-left mx-auto w-80'>
-                                <div className='flex flex-row'>
-                                <Image src={`https:${gravatar.url(comment.email, { s: '100', d: 'retro' })}`} alt='User Profile Picture' width={40} height={40} className='rounded-full'/>
+                                <div className='flex flex-row gap-x-4 flex items-center justify-center pb-4'>
+                                    <Image
+                                        src={`https:${gravatar.url(comment.email, { s: '100', d: 'retro' })}`}
+                                        alt='User Profile Picture'
+                                        width={28}
+                                        height={28}
+                                        className='rounded-full'
+                                    />
                                     <h1 className='text-black text-sm text-bold font-bold w-80'>{comment.fullname}</h1>
+                                    <p className='text-gray-400 font-ligh w-full text-right'>{comment.created_at}</p>
                                     {user && comment.user_id === user.id && (
-                                    <div className='justify-end'>
-                                        <button onClick={() => editComment(comment.id)}>
-                                            <TbEdit/>
-                                        </button>
-                                        <button onClick={() => deleteComment(comment.id)}>
-                                            <MdDeleteOutline/>
-                                        </button>
-                                    </div>
+                                        <div className='justify-end'>
+                                            <button onClick={() => editComment(comment.id)}>
+                                                <TbEdit />
+                                            </button>
+                                            <button onClick={() => deleteComment(comment.id)}>
+                                                <MdDeleteOutline />
+                                            </button>
+                                        </div>
                                     )}
                                 </div>
-                                <p className='text-gray-800 text-sm pb-2'>{comment.created_at}</p>
-                                <p className='text-gray-800 text-sm'>{comment.message}</p>
+                                <p className='text-gray-800 text-sm pl-2'>{comment.message}</p>
                             </div>
                             <hr className="h-px mx-auto my-8 bg-gray-200 border-0 dark:bg-gray-700 mx-5 w-80" />
                         </div>
@@ -265,70 +271,70 @@ export default function Article({ article }) {
             {user ? (
                 isEditing ? (
                     <form onSubmit={handleSubmitEdit} className="mx-auto mt-16 max-w-xl sm:mt-20">
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                        <div className="sm:col-span-2">
-                            <label
-                                htmlFor="message"
-                                className="block text-sm font-semibold leading-6 text-gray-900"
-                            >
-                                Message
-                            </label>
-                            <div className="mt-2.5">
-                                <textarea
-                                    name="message"
-                                    id="message"
-                                    rows="4"
-                                    value={message}
-                                    onChange={(event) => setMessage(event.target.value)}
-                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
-                                    required
-                                ></textarea>
+                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                            <div className="sm:col-span-2">
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                >
+                                    Message
+                                </label>
+                                <div className="mt-2.5">
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        rows="4"
+                                        value={message}
+                                        onChange={(event) => setMessage(event.target.value)}
+                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                        required
+                                    ></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="mt-8 text-center sm:mt-10 mb-10">
+                        <div className="mt-8 text-center sm:mt-10 mb-10">
                             <button
                                 type="submit"
                                 className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
                             >
                                 Update message
                             </button>
-                    </div>
-                </form>
+                        </div>
+                    </form>
                 ) : (
-                
-                <form onSubmit={handleSubmitConnected} className="mx-auto mt-16 max-w-xl sm:mt-20">
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                        <div className="sm:col-span-2">
-                            <label
-                                htmlFor="message"
-                                className="block text-sm font-semibold leading-6 text-gray-900"
-                            >
-                                Message
-                            </label>
-                            <div className="mt-2.5">
-                                <textarea
-                                    name="message"
-                                    id="message"
-                                    rows="4"
-                                    value={message}
-                                    onChange={(event) => setMessage(event.target.value)}
-                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
-                                    required
-                                ></textarea>
+
+                    <form onSubmit={handleSubmitConnected} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                            <div className="sm:col-span-2">
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-semibold leading-6 text-gray-900"
+                                >
+                                    Message
+                                </label>
+                                <div className="mt-2.5">
+                                    <textarea
+                                        name="message"
+                                        id="message"
+                                        rows="4"
+                                        value={message}
+                                        onChange={(event) => setMessage(event.target.value)}
+                                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                                        required
+                                    ></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="mt-8 text-center sm:mt-10 mb-10">
+                        <div className="mt-8 text-center sm:mt-10 mb-10">
                             <button
                                 type="submit"
                                 className="inline-block w-full max-w-xs font-medium rounded-md border border-transparent px-4 py-2 bg-green-500 text-base text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:max-w-none sm:px-8"
                             >
                                 Send message
                             </button>
-                    </div>
-                </form>
-            )
+                        </div>
+                    </form>
+                )
 
             ) : (
 
