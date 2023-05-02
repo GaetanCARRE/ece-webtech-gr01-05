@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Image from 'next/image';
@@ -7,6 +8,8 @@ import CheckoutContext from '../../components/CheckoutContext';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { TbEdit } from 'react-icons/tb';
 import { MdDeleteOutline } from 'react-icons/md';
+import gravatar from 'gravatar';
+
 export default function Article({ article }) {
 
     const { checkout, setCheckout } = useContext(CheckoutContext);
@@ -30,6 +33,7 @@ export default function Article({ article }) {
 
     const supabase = useSupabaseClient()
     const user = useUser()
+    
 
     const fetchComments = async () => {
         const { data: comments, error } = await supabase
@@ -67,9 +71,6 @@ export default function Article({ article }) {
         }
         fetchComments();
     };
-
-
-
     async function handleSubmit(event) {
         event.preventDefault();
         try {
@@ -239,6 +240,7 @@ export default function Article({ article }) {
                         <div key={comment.id} className='text-black flex flex-col justify-start'>
                             <div className='text-black text-left mx-auto w-80'>
                                 <div className='flex flex-row'>
+                                <Image src={`https:${gravatar.url(user.email, { s: '100', d: 'retro' })}`} alt='User Profile Picture' width={40} height={40} className='rounded-full'/>
                                     <h1 className='text-black text-sm text-bold font-bold w-80'>{comment.fullname}</h1>
                                     {user && comment.user_id === user.id && (
                                     <div className='justify-end'>

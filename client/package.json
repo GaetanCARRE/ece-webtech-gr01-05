@@ -20,6 +20,7 @@
     "embla-carousel-react": "^7.1.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "gravatar": "^1.8.2",
     "js-cookie": "^2.2.1",
     "next": "13.2.3",
     "next-auth": "^4.22.0",
