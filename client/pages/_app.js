@@ -8,7 +8,6 @@ function MyApp({ Component, pageProps }) {
   const [supabase] = useState(() => createBrowserSupabaseClient());
 
   return (
-    
       <SessionContextProvider supabaseClient={supabase} initialSession={pageProps.initialSession}>
         <CheckoutContextProvider>
           <Component {...pageProps}/> 

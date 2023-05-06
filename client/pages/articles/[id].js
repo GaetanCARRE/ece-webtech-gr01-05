@@ -9,9 +9,10 @@ import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { TbEdit } from 'react-icons/tb';
 import { MdDeleteOutline } from 'react-icons/md';
 import gravatar from 'gravatar';
+import { useRouter } from 'next/router';
 
 export default function Article({ article }) {
-
+    const router = useRouter();
     const { checkout, setCheckout } = useContext(CheckoutContext);
 
     const [activeSizeIndex, setActiveSizeIndex] = useState(-1);
@@ -33,7 +34,28 @@ export default function Article({ article }) {
 
     const supabase = useSupabaseClient()
     const user = useUser()
+    const role = user?.role
 
+    const [brand, setBrand] = useState(article.brand);
+    const [title, setTitle] = useState(article.title);
+    const [price, setPrice] = useState(article.price);
+    const [description, setDescription] = useState(article.content);
+
+    const handleBrandChange = (value) => {
+        setBrand(value);
+    };
+
+    const handleTitleChange = (value) => {
+        setTitle(value);
+    };
+
+    const handlePriceChange = (value) => {
+        setPrice(value);
+    };
+
+    const handleDescriptionChange = (value) => {
+        setDescription(value);
+    };
 
     const fetchComments = async () => {
         const { data: comments, error } = await supabase
@@ -71,7 +93,7 @@ export default function Article({ article }) {
         }
         fetchComments();
     };
-    async function handleSubmit(event) {
+    async function handleSubmitComment(event) {
         event.preventDefault();
         try {
             const { data, error } = await supabase.from('comments').insert({
@@ -99,7 +121,7 @@ export default function Article({ article }) {
         }
     }
 
-    async function handleSubmitConnected(event) {
+    async function handleSubmitCommentConnected(event) {
         event.preventDefault();
         try {
             // join the user id with profiles.id
@@ -129,7 +151,7 @@ export default function Article({ article }) {
         }
     }
 
-    async function handleSubmitEdit(event) {
+    async function handleSubmitCommentEdit(event) {
         event.preventDefault();
         try {
             const { data, error } = await supabase.from('comments').update({
@@ -149,6 +171,45 @@ export default function Article({ article }) {
         setEditId(null);
         fetchComments();
     }
+
+    async function handleClickUpdate(event) {
+        event.preventDefault();
+        try {
+            const { data, error } = await supabase.from('articles').update({
+                brand,
+                title,
+                price,
+                content : description,
+            }).eq('id', article.id);
+            if (error) {
+                throw error;
+            }
+            else {
+                alert('Article updated!');
+            }
+        } catch (error) {
+            console.log(error);
+            alert(error.error_description || error.message);
+        }
+    }
+
+    async function handleClickDelete(event) {
+        event.preventDefault();
+        try {
+            const { data, error } = await supabase.from('articles').delete().eq('id', article.id);
+            if (error) {
+                throw error;
+            }
+            else {
+                alert('Article deleted!');
+                router.push('/articles');
+            }
+        } catch (error) {
+            console.log(error);
+            alert(error.error_description || error.message);
+        }
+    }
+
 
     if (article.type == "CLOTHES") {
         var sizes = [
@@ -199,38 +260,80 @@ export default function Article({ article }) {
                         {images}
                     </div>
                 </div>
-                <div>
-                    <div className='flex flex-row '>
-                        <h2 className='text-black text-2xl py-2 pr-2 font-bold'>{article.brand}</h2>
-                        <h2 className='text-black text-2xl font-bold pt-2'>{article.title}</h2>
-                    </div>
-                    <h2 className='text-black text-xl font-bold pb-10'>{article.price}€</h2>
-
-                    <h1 className='text-black text-base pb-2'>Taille</h1>
-                    <div className='flex flex-row gap-x-2 mb-6'>
-                        {sizes.map((size, index) => (
-                            <button
-                                key={size.label}
-                                className={`text-xs border py-2 px-0 w-full ${activeSizeIndex === index
-                                    ? 'bg-gray-900 text-white border-gray-900'
-                                    : 'text-black border-gray-400'
-                                    }`}
-                                onClick={() => handleClickSize(index)}
-                                disabled={size.stock === 0}
-                            >
-                                {size.label} ({size.stock} restants)
-                            </button>
-                        ))}
-                    </div>
-
-                    <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full' onClick={handleClickAddToCart}>
-                        Ajouter au panier
-                    </button>
+                {role === 'service_role' && (
                     <div>
-                        <h1 className='text-black text-xl text-bold pb-2'>Description</h1>
-                        <p className='text-black text-sm'>{article.content}</p>
+                        <div className='flex flex-row '>
+                            <input
+                                type='text'
+                                className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400'
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                            />
+                            <input
+                                type='text'
+                                className='block w-full rounded-md border-0 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400'
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                        <input
+                            type='text'
+                            className='block w-full rounded-md border-0 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400'
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                        <div>
+                            <h1 className='text-black text-xl text-bold pb-2'>Description</h1>
+                            <textarea
+                                className='text-black text-sm outline-none border border-gray-400 rounded-[4px] py-2 px-2 mb-10 w-full h-[200px]'
+                                value={description}
+                                onChange={(e) => handleDescriptionChange(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <button className='text-white text-lg bg-green-700 rounded-[4px] py-2 px-10 mb-5 w-full' onClick={handleClickUpdate}>
+                                Update Article
+                            </button>
+                            <button className='text-white text-lg bg-red-700 rounded-[4px] py-2 px-10 mb-10 w-full' onClick={handleClickDelete}>
+                                Delete Article
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    
+                ) || (
+                        <div>
+                            <div className='flex flex-row '>
+                                <h2 className='text-black text-2xl py-2 pr-2 font-bold'>{article.brand}</h2>
+                                <h2 className='text-black text-2xl font-bold pt-2'>{article.title}</h2>
+                            </div>
+                            <h2 className='text-black text-xl font-bold pb-10'>{article.price}€</h2>
+
+                            <h1 className='text-black text-base pb-2'>Taille</h1>
+                            <div className='flex flex-row gap-x-2 mb-6'>
+                                {sizes.map((size, index) => (
+                                    <button
+                                        key={size.label}
+                                        className={`text-xs border py-2 px-0 w-full ${activeSizeIndex === index
+                                            ? 'bg-gray-900 text-white border-gray-900'
+                                            : 'text-black border-gray-400'
+                                            }`}
+                                        onClick={() => handleClickSize(index)}
+                                        disabled={size.stock === 0}
+                                    >
+                                        {size.label} ({size.stock} restants)
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button className='text-white text-lg bg-black rounded-[4px] py-2 px-10 mb-10 w-full' onClick={handleClickAddToCart}>
+                                Ajouter au panier
+                            </button>
+                            <div>
+                                <h1 className='text-black text-xl text-bold pb-2'>Description</h1>
+                                <p className='text-black text-sm'>{article.content}</p>
+                            </div>
+                        </div>
+                    )}
             </div>
 
             <div>
@@ -270,7 +373,7 @@ export default function Article({ article }) {
 
             {user ? (
                 isEditing ? (
-                    <form onSubmit={handleSubmitEdit} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <form onSubmit={handleSubmitCommentEdit} className="mx-auto mt-16 max-w-xl sm:mt-20">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
                                 <label
@@ -303,7 +406,7 @@ export default function Article({ article }) {
                     </form>
                 ) : (
 
-                    <form onSubmit={handleSubmitConnected} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                    <form onSubmit={handleSubmitCommentConnected} className="mx-auto mt-16 max-w-xl sm:mt-20">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
                                 <label
@@ -338,7 +441,7 @@ export default function Article({ article }) {
 
             ) : (
 
-                <form onSubmit={handleSubmit} className="mx-auto mt-16 max-w-xl sm:mt-20">
+                <form onSubmit={handleSubmitComment} className="mx-auto mt-16 max-w-xl sm:mt-20">
                     <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                         <div className="sm:col-span-2">
                             <label

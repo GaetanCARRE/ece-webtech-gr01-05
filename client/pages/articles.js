@@ -3,8 +3,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import { supabase } from '../supabase/supabase.js';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function ArticlesPage({ articles }) {
+  const supabase = useSupabaseClient()
+  const user = useUser()
+  const role = user?.role
   return (
     <>
       <Header />
@@ -30,13 +34,18 @@ export default function ArticlesPage({ articles }) {
           )
         })}
       </div>
-      <Footer/>
+      {role === 'service_role' && ( // Only show the button if the user is logged in and has the service_role (admin). else , show a message to the user
+        <Link href='/articles/create'>
+          <button className='bg-black text-white text-sm font-bold py-2 px-4 rounded-full'>Ajouter un article</button>
+        </Link>
+      )}
+      <Footer />
     </>
   );
 }
 
 export async function getStaticProps(ctx) {
-  const { data, error } = await supabase.from('articles').select('*').order('id',  { ascending: true });
+  const { data, error } = await supabase.from('articles').select('*').order('id', { ascending: true });
   if (error) {
     console.error(error);
     alert(error)
