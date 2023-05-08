@@ -26,7 +26,6 @@ const Login = () => {
             appearance={{ theme: ThemeSupa }}
             providers={['google']}
             theme="light"
-            updateProfileFormFields={[{ name: 'username', label: 'Nom d\'utilisateur', placeholder: 'Entrez votre nom d\'utilisateur', inputType: 'text', defaultValue: session?.user?.user_metadata?.username, },]}
           />
         ) : (
           null

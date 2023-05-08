@@ -235,7 +235,7 @@ export default function Article({ article }) {
     }
 
     const images = [];
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= article.img_count; i++) {
         const img = require(`/img/${article.img}${i}.webp`);
         images.push(
             <div key={`img-${i}`} className='text-black flex flex-col justify-center items-center'>

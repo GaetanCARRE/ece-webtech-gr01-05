@@ -36,6 +36,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = useSupabaseClient()
   const user = useUser()
+  const role = user?.role
   // Récupération de l'image Gravatar
   const email = user?.email
   const gravatarUrl = email ? gravatar.url(email, { s: '80', d: 'mp' }, true) : null
@@ -73,6 +74,11 @@ export default function Header() {
           <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
             About
           </Link>
+          {role === 'service_role' && (
+            <Link href="/articles/creation" className="text-sm font-semibold leading-6 text-gray-900">
+              Create
+            </Link>
+          )}
           {user ? (
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
               <button className="button block bg-transparent text-sm font-semibold leading-6 text-gray-900" onClick={() => supabase.auth.signOut()}>
