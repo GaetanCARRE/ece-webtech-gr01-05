@@ -150,7 +150,7 @@ export default function ArticlesCreation() {
             ) || (
                     // go back home
                     <div className='text-center text-2xl font-bold pt-20'>
-                        <h1 className='text-2xl'>You can't access this page</h1>
+                        <h1 className='text-2xl'>You can&apost access this page</h1>
 
                     </div>
                 )}
