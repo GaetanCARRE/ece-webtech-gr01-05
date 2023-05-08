@@ -9,7 +9,7 @@ import { useUser } from '@supabase/auth-helpers-react'
 export default function ArticlesCreation() {
     const user = useUser()
     const role = user?.role
-
+    console.log(role)
     const [title, setTitle] = useState('');
     const [brand, setBrand] = useState('');
     const [price, setPrice] = useState('');
@@ -20,9 +20,14 @@ export default function ArticlesCreation() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { data, error } = await supabase.from('articles').insert([
-            { title, brand, price, content, img, img_count: imgCount },
-        ]);
+        const { data, error } = await supabase.from('articles').insert([{ 
+            title, 
+            brand, 
+            price, 
+            content, 
+            img, 
+            img_count: imgCount,
+        }], {returning : 'minimal'});
         if (error) {
             console.error(error);
             alert(error.message)
@@ -33,7 +38,7 @@ export default function ArticlesCreation() {
         setImg('');
         setContent('');
         setImgCount('');
-        await uploadToServer();
+        // await uploadToServer();
     }
 
     const uploadToClient = (event) => {
@@ -121,7 +126,7 @@ export default function ArticlesCreation() {
                                             onChange={(e) => setImgCount(e.target.value)}
                                         />
                                     </div>
-                                    <label className="block mb-2 font-medium text-gray-900 dark:text-white" for="multiple_files">Upload multiple files. Please note that the image file has to be named with the image name that you give plus the number of the picture with the webp format (example nikeJacket1.webp for the first image)</label>
+                                    <label className="block mb-2 font-medium text-gray-900 dark:text-white" htmlFor="multiple_files">Upload multiple files. Please note that the image file has to be named with the image name that you give plus the number of the picture with the webp format (example nikeJacket1.webp for the first image)</label>
                                     <input
                                         className="block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 mb-8"
                                         id="multiple_files"
@@ -150,7 +155,7 @@ export default function ArticlesCreation() {
             ) || (
                     // go back home
                     <div className='text-center text-2xl font-bold pt-20'>
-                        <h1 className='text-2xl'>You can&apost access this page</h1>
+                        <h1 className='text-2xl'>You can&apos;t access this page</h1>
 
                     </div>
                 )}
