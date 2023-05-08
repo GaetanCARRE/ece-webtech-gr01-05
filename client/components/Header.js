@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, use} from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
 import {
   ArrowPathIcon,
@@ -31,21 +31,31 @@ const callsToAction = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
 export default function Header() {
+  const [theme, setTheme] = useState('light')
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+  const handleThemeChange = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = useSupabaseClient()
   const user = useUser()
   const role = user?.role
-  // Récupération de l'image Gravatar
   const email = user?.email
   const gravatarUrl = email ? gravatar.url(email, { s: '80', d: 'mp' }, true) : null
 
+
   return (
-    <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+    <header className="bg-white ">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8  " aria-label="Global">
+        <div className="flex lg:flex-1 ">
+          <Link href="/" className="-m-1.5 p-1.5 ">
             <span className="sr-only">Your Company</span>
             <Image src={logo}
               alt="Picture of the author" className="h-12 w-auto" />
@@ -54,48 +64,48 @@ export default function Header() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 "
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Link href="/articles" className="text-sm font-semibold leading-6 text-gray-900">
+        <Popover.Group className="hidden lg:flex lg:gap-x-12 ">
+          <Link href="/articles" className="text-sm font-semibold leading-6 text-gray-900 ">
             Articles
           </Link>
-          <Link href="/profile" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="/profile" className="text-sm font-semibold leading-6 text-gray-900 ">
             Profile
           </Link>
-          <Link href="/contacts" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="/contacts" className="text-sm font-semibold leading-6 text-gray-900 ">
             Contacts
           </Link>
-          <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900  ">
             About
           </Link>
           {role === 'service_role' && (
-            <Link href="/articles/creation" className="text-sm font-semibold leading-6 text-gray-900">
+            <Link href="/articles/creation" className="text-sm font-semibold leading-6 text-gray-900 ">
               Create
             </Link>
           )}
           {user ? (
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <button className="button block bg-transparent text-sm font-semibold leading-6 text-gray-900" onClick={() => supabase.auth.signOut()}>
+              <button className="button block bg-transparent text-sm font-semibold leading-6 text-gray-900 " onClick={() => supabase.auth.signOut()}>
                 Log out <span aria-hidden="true">&larr;</span>
               </button>
             </div>
 
           ) : (
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link href="/login" className="text-sm font-semibold leading-6 text-gray-900  ">
                 Log in <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
 
           )}
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4 ">
           <Link href="/profile">
             {gravatarUrl && (
               <div>
@@ -115,9 +125,8 @@ export default function Header() {
               </svg>
             </Link>
           </div>
+          <button className= " text-gray-900 bg-transparent p-2 rounded-3xl" onClick={handleThemeChange}>Dark Mode</button>
         </div>
-
-
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
@@ -134,7 +143,7 @@ export default function Header() {
             </Link>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700 "
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -171,19 +180,19 @@ export default function Header() {
                 </Disclosure>
                 <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-gray-50  "
                 >
                   Home
                 </Link>
                 <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-gray-50 "
                 >
                   Marketplace
                 </Link>
                 <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900  hover:bg-gray-50  "
                 >
                   Company
                 </Link>
@@ -191,7 +200,7 @@ export default function Header() {
               <div className="py-6">
                 <Link
                   href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900  hover:bg-gray-50  "
                 >
                   Log in
                 </Link>

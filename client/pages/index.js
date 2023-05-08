@@ -34,10 +34,10 @@ export default function HomePage() {
           })}
         </Carousel>
       </div>
-      <h1 className='text-black text-center text-2xl py-16'>
+      <h1 className='text-black text-center text-2xl py-16 dark:bg-black'>
         OUR COLLECTION
       </h1>
-      <div className='grid grid-cols-3 gap-x-20 px-20 pb-10'>
+      <div className='grid grid-cols-3 gap-x-20 px-20 pb-10 dark:bg-black'>
 
         <div>
           <Image
@@ -46,7 +46,7 @@ export default function HomePage() {
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>THE NORTH FACE</h2>
+          <h2 className='text-black text-xl dark:bg-black dark:text-gray-50'>THE NORTH FACE</h2>
         </div>
         <div>
           <Image
@@ -55,7 +55,7 @@ export default function HomePage() {
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>STUSSY</h2>
+          <h2 className='text-black text-xl dark:bg-black dark:text-gray-50'>STUSSY</h2>
         </div>
         <div>
           <Image
@@ -64,7 +64,7 @@ export default function HomePage() {
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>PARRA</h2>
+          <h2 className='text-black text-xl dark:bg-black dark:text-gray-50'>PARRA</h2>
         </div>
       </div>
 
