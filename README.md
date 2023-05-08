@@ -63,13 +63,13 @@
 - [X] Login and profile page → /4
 - [ ] New article creation → /6
 - [X] New comment creation → /4
-- [ ] Ressource access control → /6
+- [X] Ressource access control → /6
 - [ ] Artical modification / removal → /4
 - [X] Comment modification / removal → /4
-- [ ] Account settings → /4
+- [X] Account settings → /4
 - [ ] Search → /6
 - [ ] WYSIWYG integration → /2
-- [ ] Gravatar integration → /2
+- [X] Gravatar integration → /2
 - [ ] Light / dark theme → /2
 - [ ] Accent color selection → /4
 
