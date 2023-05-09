@@ -34,6 +34,10 @@ function classNames(...classes) {
 export default function Header() {
   const [theme, setTheme] = useState('light')
   useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    if (storedTheme) {
+    setTheme(storedTheme)
+    }
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
     } else {
@@ -41,7 +45,9 @@ export default function Header() {
     }
   }, [theme])
   const handleThemeChange = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
   }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const supabase = useSupabaseClient()
@@ -125,7 +131,9 @@ export default function Header() {
               </svg>
             </Link>
           </div>
-          <button className= " text-gray-900 bg-transparent p-2 rounded-3xl" onClick={handleThemeChange}>Dark Mode</button>
+          <button className="text-gray-900 bg-transparent p-2 rounded-3xl" onClick={handleThemeChange}>
+          {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
+          </button>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
