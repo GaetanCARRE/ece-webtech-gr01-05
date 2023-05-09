@@ -61,10 +61,10 @@
 #### Applications development
 - [X] Basic pages and navigation → /2
 - [X] Login and profile page → /4
-- [ ] New article creation → /6
+- [X] New article creation → /6
 - [X] New comment creation → /4
 - [X] Ressource access control → /6
-- [ ] Artical modification / removal → /4
+- [X] Artical modification / removal → /4
 - [X] Comment modification / removal → /4
 - [X] Account settings → /4
 - [ ] Search → /6
