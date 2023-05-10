@@ -34,6 +34,7 @@ export default function ArticlesPage({ articles }) {
           )
         })}
       </div>
+
       {role === 'service_role' && ( // Only show the button if the user is logged in and has the service_role (admin). else , show a message to the user
         <div className='text-center dark:bg-black'>
         <Link href='/articles/creation'>
@@ -56,6 +57,7 @@ export async function getStaticProps(ctx) {
   return {
     props: {
       articles: articles
-    }
+    },
+    revalidate : 60
   };
 }

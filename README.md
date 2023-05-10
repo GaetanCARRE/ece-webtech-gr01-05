@@ -27,8 +27,8 @@
 1. Assurez-vous que Node.js et NPM sont installés sur votre système. Si vous utilisez Ubuntu, vous pouvez les installer via le terminal avec les commandes ```sudo apt install nodejs``` et ```sudo apt install npm```.
 1. Ouvrez un terminal et utilisez la commande ```npm install``` pour installer toutes les dépendances requises pour le projet.
 1. Pour lancer le site, vous devez d'abord le build en utilisant la commande ```npm run build```, puis vous pouvez le démarrer en utilisant la commande: 
-    - ```npm run start``` si vous souhaitez simplement visualiser le site sans              modifications. 
-    - ```npm run dev```si vous envisagez de modifier le site, cela lance le serveur de développement qui surveille les modifications et recompile automatiquement le site.
+    - ```npm run start``` si vous souhaitez simplement visualiser le site sans modifications. 
+    - ```npm run dev```si vous envisagez de modifier le site.
 
 ## 💻 Usage <a name="usage"></a>
 - Naviguer à travers les différents pages du site
@@ -61,17 +61,17 @@
 #### Applications development
 - [X] Basic pages and navigation → /2
 - [X] Login and profile page → /4
-- [ ] New article creation → /6
+- [X] New article creation → /6
 - [X] New comment creation → /4
 - [X] Ressource access control → /6
-- [ ] Artical modification / removal → /4
+- [X] Artical modification / removal → /4
 - [X] Comment modification / removal → /4
 - [X] Account settings → /4
 - [ ] Search → /6
 - [ ] WYSIWYG integration → /2
 - [X] Gravatar integration → /2
 - [ ] Light / dark theme → /2
-- [ ] Accent color selection → /4
+- [ ] Theme selection → /4
 
 #### Bonus
 - [X] Shopping cart

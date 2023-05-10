@@ -41,22 +41,6 @@ export default function Article({ article }) {
     const [price, setPrice] = useState(article.price);
     const [description, setDescription] = useState(article.content);
 
-    const handleBrandChange = (value) => {
-        setBrand(value);
-    };
-
-    const handleTitleChange = (value) => {
-        setTitle(value);
-    };
-
-    const handlePriceChange = (value) => {
-        setPrice(value);
-    };
-
-    const handleDescriptionChange = (value) => {
-        setDescription(value);
-    };
-
     const fetchComments = async () => {
         const { data: comments, error } = await supabase
             .from("comments")
@@ -69,6 +53,18 @@ export default function Article({ article }) {
         }
     };
     fetchComments();
+
+    const fetchArticle = async () => {
+        const { data, error } = await supabase
+            .from("articles")
+            .select()
+            .eq("id", article.id);
+        if (error) {
+            console.error(error);
+        } else {
+            article = data;
+        }
+    };
 
     const editComment = async (id) => {
         const { data: comment, error } = await supabase
@@ -170,6 +166,7 @@ export default function Article({ article }) {
         setIsEditing(false);
         setEditId(null);
         fetchComments();
+        setMessage('');
     }
 
     async function handleClickUpdate(event) {
@@ -186,6 +183,7 @@ export default function Article({ article }) {
             }
             else {
                 alert('Article updated!');
+                fetchArticle();
             }
         } catch (error) {
             console.log(error);
@@ -541,6 +539,7 @@ export async function getStaticProps(ctx) {
         props: {
             article: article,
         },
+        revalidate: 60,
 
     };
 }
