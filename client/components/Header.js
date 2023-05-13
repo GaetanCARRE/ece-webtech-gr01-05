@@ -13,7 +13,7 @@ import gravatar from 'gravatar'
 import { useRouter } from 'next/router'
 import { FiSearch } from 'react-icons/fi';
 import { MdLightMode, MdDarkMode } from 'react-icons/md'
-
+import { RxHamburgerMenu } from 'react-icons/rx'
 
 
 
@@ -88,23 +88,23 @@ export default function Header() {
             </form>
           </div>
         )}
-        <div className='lg:hidden flex flex-1 justify-end px-5'>
+        <div className='lg:hidden flex flex-1 justify-end px-5 dark:bg-neutral-800'>
           <button>
-            <FiSearch className="h-6 w-6" onClick={() => setIsSearchOpen(!isSearchOpen)} />
+            <FiSearch className="h-6 w-6 dark:bg-neutral-800 dark:text-white" onClick={() => setIsSearchOpen(!isSearchOpen)} />
           </button>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden ">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon className="h-6 w-6 dark:bg-neutral-800 dark:text-white" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12 dark: bg-transparent">
-          <Link href="/articles" className="text-sm font-semibold leading-6 text-gray-900 dark:bg-transparent dark:text-white">
+        <Popover.Group className="hidden lg:flex lg:gap-x-12 dark:bg-neutral-800 dark:text-white">
+          <Link href="/articles" className="text-sm font-semibold leading-6 text-gray-900 dark:bg-neutral-800 dark:text-white">
             Articles
           </Link>
           <Link href="/profile" className="text-sm font-semibold leading-6 text-gray-900 dark:bg-transparent dark:text-white">
@@ -156,7 +156,7 @@ export default function Header() {
             <FiSearch className="h-6 w-6 mx-4 dark:bg-transparent dark:text-white" onClick={() => setIsSearchOpen(!isSearchOpen)} />
           </button>
           <div className='w-6 h-6 '>
-            <Link href="/checkout" className="text-sm font-semibold leading-6 text-gray-900 ">
+            <Link href="/checkout" className="text-sm font-semibold leading-6 text-gray-900">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:bg-neutral-800 dark:text-white">
                 <path className='w-6 h-6' strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
               </svg>
@@ -177,32 +177,55 @@ export default function Header() {
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-neutral-800">
-          <div className="flex items-center justify-between">
-            <Link href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <Image className='h-8 w-auto'
-                src={logo}
-                alt="Picture of the author"
-                width={580}
-                height={725}
-              />
+          <div className="flex items-center justify-between dark:bg-neutral-800 dark:text-white">
+            <Link href="#" className="-m-1.5 p-1.5 dark:bg-neutral-800 dark:text-white">
+              <span className="sr-only dark:bg-neutral-800 dark:text-white">Your Company</span>
+              {theme === 'dark' ? (
+                <Image className='h-8 w-auto dark:bg-neutral-800 dark:text-white'
+                  src={logo_dark}
+                  alt="Picture of the author"
+                  width={580}
+                  height={725}
+                />
+              ) : (
+                <Image className='h-8 w-auto'
+                  src={logo}
+                  alt="Picture of the author"
+                  width={580}
+                  height={725}
+                />
+              )}
             </Link>
+            <div className='w-6 h-6 lg:hidden'>
+              <Link href="/checkout" className="text-sm font-semibold leading-6 text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 dark:bg-neutral-800 dark:text-white">
+                  <path className='w-6 h-6' strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+              </Link>
+            </div>
+            <button className="text-gray-900 bg-transparent rounded-3xl mx-4 lg:hidden" onClick={handleThemeChange}>
+              {theme === 'dark' ? (
+                <MdLightMode className="h-6 w-6 dark:bg-transparent dark:text-white" />
+              ) : (
+                <MdDarkMode className="h-6 w-6 dark:bg-transparent dark:text-white" />
+              )}
+            </button>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700 dark:bg-neutral-800 dark:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <span className="sr-only dark:bg-neutral-800 dark:text-white">Close menu</span>
+              <XMarkIcon className="h-6 w-6 dark:bg-neutral-800 dark:text-white" aria-hidden="true" />
             </button>
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
+              <div className="space-y-2 py-6 dark:bg-neutral-800 dark:text-white">
+                <Disclosure as="div" className="-mx-3 dark:bg-neutral-800 dark:text-white">
                   {({ open }) => (
                     <>
-                      <Link href='/articles' className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50">
+                      <Link href='/articles' className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-gray-50 dark:bg-neutral-800 dark:text-white">
                         Articles
                       </Link>
                     </>
@@ -210,30 +233,30 @@ export default function Header() {
                 </Disclosure>
                 <Link
                   href="/"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:bg-neutral-800 dark:text-white"
                 >
                   Home
                 </Link>
                 <Link
                   href="/profile"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:bg-neutral-800 dark:text-white"
                 >
                   Profile
                 </Link>
               </div>
-              <div className="py-6">
+              <div className="py-6 dark:bg-neutral-800 dark:text-white">
                 {user ? (
 
-                  <button className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" onClick={() => supabase.auth.signOut()}>
-                    Log out <span aria-hidden="true">&larr;</span>
+                  <button className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:bg-neutral-800 dark:text-white" onClick={() => supabase.auth.signOut()}>
+                    Log out <span aria-hidden="true" className='dark:bg-neutral-800 dark:text-white'>&larr;</span>
                   </button>
 
                 ) : (
                   <Link
                     href="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:bg-neutral-800 dark:text-white"
                   >
-                    Log in
+                    Log in <span aria-hidden="true" className='dark:bg-neutral-800 dark:text-white'>&rarr;</span>
                   </Link>
                 )}
 
