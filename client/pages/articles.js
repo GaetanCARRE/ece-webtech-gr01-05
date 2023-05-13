@@ -12,7 +12,7 @@ export default function ArticlesPage({ articles }) {
   return (
     <>
       <Header />
-      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 pt-10 text-black dark:text-white dark:bg-neutral-900'>
+      <div className='grid md:grid-cols-2 pb-40 gap-x-20 px-20 pb-8 pt-10 text-black dark:text-white dark:bg-neutral-900 lg:grid-cols-3 sm:grid-cols-1'>
         {articles.map(article => {
           const test = require(`/img/${article.img}1.webp`);
           return (

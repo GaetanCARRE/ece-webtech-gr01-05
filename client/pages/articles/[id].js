@@ -268,7 +268,7 @@ export default function Article({ article }) {
             <Header />
             <div className='grid grid-cols-3 pb-20 gap-x-10 px-10 pt-10 dark:text-white dark:bg-neutral-900'>
                 <div className='col-span-2 dark:bg-neutral-900'>
-                    <div className='grid grid-cols-2 gap-x-10 gap-y-10 dark:bg-neutral-900'>
+                    <div className='grid lg:grid-cols-2 gap-x-10 gap-y-10 dark:bg-neutral-900 md:grid-cols-1'>
                         {images}
                     </div>
                 </div>
