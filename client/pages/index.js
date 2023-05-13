@@ -18,13 +18,13 @@ const images = [
 
 export default function HomePage() {
   return (
-    <>
+    <div className='dark:bg-neutral-900'>
       <Header />
-      <div className="lg:w-full bg-black mb-40">
+      <div className="lg:w-full bg-black mb-40 bg-transparent dark:bg-neutral-900">
         <Carousel loop>
           {images.map((src, key) => {
             return (
-              <div key={key} className="relative h-64 flex-[0_0_100%] bg-transparent">
+              <div key={key} className="relative h-64 flex-[0_0_100%] bg-transparent dark:bg-neutral-900">
                 <Image
                   src={src}
                   alt="Picture of the author"
@@ -34,41 +34,41 @@ export default function HomePage() {
           })}
         </Carousel>
       </div>
-      <h1 className='text-black text-center text-2xl py-16'>
+      <h1 className='text-black text-center text-2xl py-16 dark:bg-neutral-900 dark:text-white'>
         OUR COLLECTION
       </h1>
-      <div className='grid grid-cols-3 gap-x-20 px-20 pb-10'>
+      <div className='grid grid-cols-3 gap-x-20 px-20 pb-10 dark:bg-neutral-900'>
 
-        <div>
+        <div className='dark:bg-neutral-900'>
           <Image
             src={presentation_img1}
             alt="Picture of the author"
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>THE NORTH FACE</h2>
+          <h2 className='text-black text-xl dark:bg-neutral-900 dark:text-white'>THE NORTH FACE</h2>
         </div>
-        <div>
+        <div className='dark:bg-neutral-900'>
           <Image
             src={presentation_img2}
             alt="Picture of the author"
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>STUSSY</h2>
+          <h2 className='text-black text-xl dark:bg-neutral-900 dark:text-white'>STUSSY</h2>
         </div>
-        <div>
+        <div className='dark:bg-neutral-900'>
           <Image
             src={presentation_img3}
             alt="Picture of the author"
             width="350px"
             height="300px"
           />
-          <h2 className='text-black text-xl'>PARRA</h2>
+          <h2 className='text-black text-xl dark:bg-neutral-900 dark:text-white'>PARRA</h2>
         </div>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }

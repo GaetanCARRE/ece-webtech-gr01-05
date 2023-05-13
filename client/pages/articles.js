@@ -12,13 +12,13 @@ export default function ArticlesPage({ articles }) {
   return (
     <>
       <Header />
-      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 mt-10'>
+      <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 pt-10 text-black dark:text-white dark:bg-neutral-900'>
         {articles.map(article => {
           const test = require(`/img/${article.img}1.webp`);
           return (
-            <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10'>
-              <Link href={`/articles/${article.id}`} className='text-black' >
-                <div className='text-black'>
+            <div key={article.id} className='flex flex-col justify-center items-center pb-10 dark:bg-neutral-900'>
+              <Link href={`/articles/${article.id}`}>
+                <div className='dark:bg-neutral-900'>
                   <Image className='mx-auto object-cover'
                     src={test}
                     alt="Picture of the author"
@@ -26,9 +26,9 @@ export default function ArticlesPage({ articles }) {
                     height={725}
                   />
                 </div>
-                <h2 className='text-black text-sm font-bold pt-2'>{article.title}</h2>
-                <h2 className='text-black text-sm py-2 font-light'>{article.brand}</h2>
-                <h2 className='text-black text-sm font-bold'>{article.price}€</h2>
+                <h2 className='text-sm font-bold pt-2 dark:bg-neutral-900'>{article.title}</h2>
+                <h2 className='text-sm py-2 font-light dark:bg-neutral-900'>{article.brand}</h2>
+                <h2 className='text-sm font-bold dark:bg-neutral-900'>{article.price}€</h2>
               </Link>
             </div>
           )

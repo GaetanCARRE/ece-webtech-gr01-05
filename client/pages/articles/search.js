@@ -34,18 +34,18 @@ export default function ArticlesSearch() {
     }, [searchQuery]);
 
     return (
-        <>
+        <div className='dark:bg-neutral-900'>
             <Header />
-            <div>
-                <h1 className='text-2xl text-center my-10'>Articles Search</h1>
+            <div className='dark:bg-neutral-900'>
+                <h1 className='text-2xl text-center my-10 dark:bg-neutral-900 dark:text-white'>Articles Search</h1>
             </div>
-            <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8'>
+            <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 dark:bg-neutral-900'>
             {articles.map((article) => {
                 const test = require(`/img/${article.img}1.webp`);
                 return (
-                <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10'>
-                    <Link href={`/articles/${article.id}`} className='text-black'>
-                        <div className='text-black'>
+                <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10 dark:bg-neutral-900 dark:text-white'>
+                    <Link href={`/articles/${article.id}`} className='text-black dark:bg-neutral-900 dark:text-white'>
+                        <div className='text-black dark:bg-neutral-900 dark:text-white'>
                             <Image className='mx-auto object-cover'
                                 src={test}
                                 alt="Picture of the author"
@@ -53,15 +53,15 @@ export default function ArticlesSearch() {
                                 height={725}
                             />
                         </div>
-                        <h2 className='text-black text-sm font-bold pt-2'>{article.title}</h2>
-                        <h2 className='text-black text-sm py-2 font-light'>{article.brand}</h2>
-                        <h2 className='text-black text-sm font-bold'>{article.price}€</h2>
+                        <h2 className='text-black text-sm font-bold pt-2 dark:bg-neutral-900 dark:text-white'>{article.title}</h2>
+                        <h2 className='text-black text-sm py-2 font-light dark:bg-neutral-900 dark:text-white'>{article.brand}</h2>
+                        <h2 className='text-black text-sm font-bold dark:bg-neutral-900 dark:text-white'>{article.price}€</h2>
                     </Link>
                 </div>
             )}
             )}
             </div>
             <Footer />
-        </>
+        </div>
     )
 }

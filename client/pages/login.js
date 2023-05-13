@@ -12,7 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.push('/profile')
+      router.push('/')
     }
   }, [session])
 
