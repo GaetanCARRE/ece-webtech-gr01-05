@@ -553,21 +553,20 @@ export async function getStaticProps(ctx) {
         props: {
             article: article,
         },
-        revalidate: 60,
-
     };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths(ctx) {
+    
     const { data, error } = await supabase.from('articles').select('*');
     if (error) {
         console.error(error);
         alert(error.message);
-    }
+    }    
     const articles = data;
     return {
         paths: articles.map(article => `/articles/${article.id}`),
-        fallback: false
+        fallback: "blocking",
     };
 }
 
