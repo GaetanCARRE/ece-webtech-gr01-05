@@ -4,10 +4,6 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState } from 'react';  // Ajout de useContext
 import { useUser } from '@supabase/auth-helpers-react'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import '@ckeditor/ckeditor5-build-classic/build/translations/fr.js';
-
 
 
 
@@ -149,13 +145,6 @@ export default function ArticlesCreation() {
         }
         setImage([]);
     };
-    function MyEditor() {
-        const [content, setContent] = useState('');
-        const handleContentChange = (event, editor) => {
-          const data = editor.getData();
-          setContent(data);
-        }
-    }
     return (
         <div className='dark:bg-neutral-900'>
             <Header />
@@ -206,15 +195,13 @@ export default function ArticlesCreation() {
                                 />
                             </div>
                             <div className='dark:bg-neutral-900 dark:text-white'>
-                            <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Description</h1>
-                            <CKEditor
-                                editor={ClassicEditor}
-                                data={content}
-                                onChange={handleContentChange}
-                                config={{
-                                language: 'fr',
-                            }}
-                            />
+                            <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 1</h1>
+                                <input
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={img1}
+                                    onChange={(e) => setImg1(e.target.value)}
+                                    nullable
+                                />
                             </div>
                             <div className='dark:bg-neutral-900 dark:text-white'>
                                 <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 2</h1>

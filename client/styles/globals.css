@@ -1,11 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '@ckeditor/ckeditor5-theme-default/theme.css';
-@import '@ckeditor/ckeditor5-alignment/theme/alignment.css';
-@import '@ckeditor/ckeditor5-basic-styles/theme/bold.css';
-@import '@ckeditor/ckeditor5-basic-styles/theme/italic.css';
-@import '@ckeditor/ckeditor5-block-quote/theme/blockquote.css';
 
 :root {
   --max-width: 1100px;
