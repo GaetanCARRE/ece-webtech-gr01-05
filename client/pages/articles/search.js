@@ -41,7 +41,7 @@ export default function ArticlesSearch() {
             </div>
             <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 dark:bg-neutral-900'>
             {articles.map((article) => {
-                const test = require(`/img/${article.img}1.webp`);
+                const test = article.img1;
                 return (
                 <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10 dark:bg-neutral-900 dark:text-white'>
                     <Link href={`/articles/${article.id}`} className='text-black dark:bg-neutral-900 dark:text-white'>

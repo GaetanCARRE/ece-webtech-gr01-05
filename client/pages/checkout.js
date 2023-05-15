@@ -48,7 +48,7 @@ export default function CheckoutPage() {
           </h1>
           <div className="flex flex-col items-center dark:bg-neutral-900">
             {articles.map((article) => {
-              const image = require(`/img/${article.articleInfo.img}1.webp`);
+              const image = article.articleInfo.img1;
               return (
                 <div key={article.id} className='dark:bg-neutral-900 dark:text-white'>
                   {article.articleInfo && (
