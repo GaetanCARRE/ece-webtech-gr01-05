@@ -14,12 +14,15 @@ export default function ArticlesCreation() {
     const [title, setTitle] = useState('');
     const [brand, setBrand] = useState('');
     const [price, setPrice] = useState('');
-    const [img, setImg] = useState('');
     const [imgCount, setImgCount] = useState('');
     const [content, setContent] = useState('');
-    const [image, setImage] = useState([]);
     const [drop, setDrop] = useState(false);
     const [dropdownText, setDropDownText] = useState('Category');
+
+    const [img1, setImg1] = useState('');
+    const [img2, setImg2] = useState('');
+    const [img3, setImg3] = useState('');
+    const [img4, setImg4] = useState('');
 
     const [stock_s, setStock_s] = useState(null);
     const [stock_m, setStock_m] = useState();
@@ -35,7 +38,7 @@ export default function ArticlesCreation() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(dropdownText === 'Category'){
+        if (dropdownText === 'Category') {
             alert('Please select a category')
             return
         }
@@ -80,7 +83,6 @@ export default function ArticlesCreation() {
             brand,
             price,
             content,
-            img,
             img_count: imgCount,
             type: dropdownText,
             stock_s,
@@ -91,7 +93,12 @@ export default function ArticlesCreation() {
             stock_11,
             stock_12,
             stock_13,
-            stock
+            stock,
+            title_brand: title + '_' + brand,
+            img1,
+            img2,
+            img3,
+            img4
         }], { returning: 'minimal' });
         if (error) {
             console.error(error);
@@ -99,38 +106,24 @@ export default function ArticlesCreation() {
         }
         else {
             alert('Article created !')
-        }
-        const tb = title + '_' + brand;
-        setTitle('');
-        setBrand('');
-        setPrice('');
-        setImg('');
-        setContent('');
-        setImgCount('');
-        setStock_s('');
-        setStock_m('');
-        setStock_l('');
-        setStock_xl('');
-        setStock_10('');
-        setStock_11('');
-        setStock_12('');
-        setStock_13('');
-        setStock('');
-        setDropDownText('Category');
-        setDrop(false);
-        await uploadToServer();
-        revalidatePage(tb);
-    };
-
-    const revalidatePage = async(tb) => {
-        // select article with title_brand
-        const {data,error} = await supabase.from('articles').select('*').eq('title_brand', tb);
-        if (error) {
-            console.error(error);
-            alert(error.message)
-        }
-        else {
-        revalidatePath('/articles/' + data[0].id);
+            const tb = title + '_' + brand;
+            setTitle('');
+            setBrand('');
+            setPrice('');
+            setContent('');
+            setImgCount('');
+            setStock_s('');
+            setStock_m('');
+            setStock_l('');
+            setStock_xl('');
+            setStock_10('');
+            setStock_11('');
+            setStock_12('');
+            setStock_13('');
+            setStock('');
+            setDropDownText('Category');
+            setDrop(false);
+            // await uploadToServer();
         }
 
     };
@@ -199,45 +192,59 @@ export default function ArticlesCreation() {
                                     className='text-black text-sm outline-none border border-gray-400 rounded-[4px] py-2 px-2 mb-10 w-full h-[200px] dark:bg-neutral-900 dark:text-white'
                                     value={content}
                                     onChange={(e) => setContent(e.target.value)}
+                                    nullable
                                 />
                             </div>
                             <div className='dark:bg-neutral-900 dark:text-white'>
-                                <div className='dark:bg-neutral-900 dark:text-white'>
-                                    <h2 className='text-center mb-6 text-xl dark:bg-neutral-900 dark:text-white'>Select Images</h2>
-                                    <div className='grid grid-cols-2 gap-x-4 mb-8 dark:bg-neutral-900 dark:text-white'>
-                                        <h3 className='pl-1 dark:bg-neutral-900 dark:text-white'>Image name</h3>
-                                        <h3 className='pl-1 dark:bg-neutral-900 dark:text-white'>Number of images</h3>
-                                        <input
-                                            type='text'
-                                            className='block w-full rounded-md border-0 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
-                                            value={img}
-                                            onChange={(e) => setImg(e.target.value)}
-                                        />
-                                        <input
-                                            type='text'
-                                            className='block w-full rounded-md border-0 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
-                                            value={imgCount}
-                                            onChange={(e) => setImgCount(e.target.value)}
-                                        />
-                                    </div>
-                                    <label className="block mb-2 font-medium text-gray-900 dark:text-white dark:bg-neutral-900 dark:text-white" htmlFor="multiple_files">Upload multiple files. Please note that the image file has to be named with the image name that you give plus the number of the picture with the webp format (example nikeJacket1.webp for the first image)</label>
-                                    <input
-                                        className="block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:bg-neutral-900 dark:text-white mb-8"
-                                        id="multiple_files"
-                                        type="file"
-                                        multiple
-                                        onChange={uploadToClient}
-                                    />
-
-                                    <div className='grid grid-cols-4 gap-4 mb-8'>
-                                        {image.map((file, index) => (
-                                            <div key={index}>
-                                                <img src={URL.createObjectURL(file)} alt={`Image ${index + 1}`} />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 1</h1>
+                                <input
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={img1}
+                                    onChange={(e) => setImg1(e.target.value)}
+                                    nullable
+                                />
                             </div>
+                            <div className='dark:bg-neutral-900 dark:text-white'>
+                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 2</h1>
+                                <input
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={img2}
+                                    onChange={(e) => setImg2(e.target.value)}
+                                    nullable
+                                />
+                            </div>
+                            <div className='dark:bg-neutral-900 dark:text-white'>
+                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 3</h1>
+                                <input
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={img3}
+                                    onChange={(e) => setImg3(e.target.value)}
+                                    nullable
+                                />
+                            </div>
+                            <div className='dark:bg-neutral-900 dark:text-white'>
+                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 4</h1>
+                                <input
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={img4}
+                                    onChange={(e) => setImg4(e.target.value)}
+                                    nullable
+                                />
+                            </div>
+                            <div className='dark:bg-neutral-900 dark:text-white'>
+                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Number of image</h1>
+                                <input
+                                    type='number'
+                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
+                                    value={imgCount}
+                                    onChange={(e) => setImgCount(e.target.value)}
+                                    nullable
+                                />
+                            </div>
+
+
+
+
                             <div className='grid grid-cols-5 dark:bg-neutral-900 my-10 dark:bg-neutral-900'>
                                 <div className='dark:bg-neutral-900'>
                                     <button
@@ -300,7 +307,7 @@ export default function ArticlesCreation() {
                                                 onChange={(e) => setStock_11(e.target.value)}
                                                 placeholder='Amount of size 11'
                                                 nullable
-                                                
+
                                             />
                                         </div>
                                         <div className='dark:bg-neutral-900 dark:text-white'>
