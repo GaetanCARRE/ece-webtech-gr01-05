@@ -553,6 +553,7 @@ export async function getStaticProps(ctx) {
         props: {
             article: article,
         },
+        revalidate: 30,
     };
 }
 
