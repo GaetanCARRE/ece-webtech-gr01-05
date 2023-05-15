@@ -198,6 +198,7 @@ export default function Article({ article }) {
             else {
                 alert('Article updated!');
                 fetchArticle();
+                
             }
         } catch (error) {
             console.log(error);

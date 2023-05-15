@@ -39,17 +39,23 @@ export default function ArticlesPage({ articles }) {
   );
 }
 
-export async function getStaticProps(ctx) {
-  const { data, error } = await supabase.from('articles').select('*').order('id', { ascending: true });
+export async function getServerSideProps(ctx) {
+  const { data, error } = await supabase
+    .from('articles')
+    .select('*')
+    .order('id', { ascending: true });
+
   if (error) {
     console.error(error);
-    alert(error)
+    throw error;
   }
+
   const articles = data;
+
   return {
     props: {
-      articles: articles
+      articles: articles,
     },
-    revalidate : 60
   };
 }
+
