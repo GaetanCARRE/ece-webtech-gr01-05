@@ -4,6 +4,10 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState } from 'react';  // Ajout de useContext
 import { useUser } from '@supabase/auth-helpers-react'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import '@ckeditor/ckeditor5-build-classic/build/translations/fr.js';
+
 
 
 
@@ -94,7 +98,7 @@ export default function ArticlesCreation() {
             stock_12,
             stock_13,
             stock,
-            title_brand: title + '_' + brand,
+            title_brand: title + ' ' + brand,
             img1,
             img2,
             img3,
@@ -145,7 +149,13 @@ export default function ArticlesCreation() {
         }
         setImage([]);
     };
-
+    function MyEditor() {
+        const [content, setContent] = useState('');
+        const handleContentChange = (event, editor) => {
+          const data = editor.getData();
+          setContent(data);
+        }
+    }
     return (
         <div className='dark:bg-neutral-900'>
             <Header />
@@ -196,13 +206,15 @@ export default function ArticlesCreation() {
                                 />
                             </div>
                             <div className='dark:bg-neutral-900 dark:text-white'>
-                                <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 1</h1>
-                                <input
-                                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 dark:bg-neutral-900 dark:text-white'
-                                    value={img1}
-                                    onChange={(e) => setImg1(e.target.value)}
-                                    nullable
-                                />
+                            <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Description</h1>
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={content}
+                                onChange={handleContentChange}
+                                config={{
+                                language: 'fr',
+                            }}
+                            />
                             </div>
                             <div className='dark:bg-neutral-900 dark:text-white'>
                                 <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 2</h1>
@@ -245,7 +257,7 @@ export default function ArticlesCreation() {
 
 
 
-                            <div className='grid grid-cols-5 dark:bg-neutral-900 my-10 dark:bg-neutral-900'>
+                            <div className='grid grid-cols-5 dark:bg-neutral-900 my-10'>
                                 <div className='dark:bg-neutral-900'>
                                     <button
                                         id="dropdownDefaultButton"
@@ -273,14 +285,14 @@ export default function ArticlesCreation() {
 
                                     {drop && (
                                         <div className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                                                <li>
+                                            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 dark:bg-gray-900" aria-labelledby="dropdownDefaultButton">
+                                                <li className='dark:bg-gray-900'>
                                                     <button onClick={() => { setDropDownText('SHOES'); setDrop(!drop); }} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shoes</button>
                                                 </li>
-                                                <li>
+                                                <li className='dark:bg-gray-900'>
                                                     <button onClick={() => { setDropDownText('CLOTHES'); setDrop(!drop); }} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Clothes</button>
                                                 </li>
-                                                <li>
+                                                <li className='dark:bg-gray-900'>
                                                     <button onClick={() => { setDropDownText('ACCESSORIES'); setDrop(!drop); }} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Accessories</button>
                                                 </li>
                                             </ul>
