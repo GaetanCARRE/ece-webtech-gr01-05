@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 export default function Article({ article }) {
     const router = useRouter();
     const { checkout, setCheckout } = useContext(CheckoutContext);
-
+    // const article = fetchArticle();
 
     const [theme, setTheme] = useState('light')
     useEffect(() => {
@@ -198,7 +198,7 @@ export default function Article({ article }) {
             else {
                 alert('Article updated!');
                 fetchArticle();
-                
+
             }
         } catch (error) {
             console.log(error);
@@ -248,21 +248,24 @@ export default function Article({ article }) {
     }
 
     const images = [];
-    for (let i = 1; i <= article.img_count; i++) {
-        const img = require(`/img/${article.img}${i}.webp`);
-        images.push(
-            <div key={`img-${i}`} className=' flex flex-col justify-center items-center'>
-                <div className=''>
-                    <Image className='mx-auto object-cover'
-                        src={img}
-                        alt={`Picture ${i} of the author`}
-                        width={580}
-                        height={725}
-                    />
+    for (let i = 1; i <= 4; i++) {
+        const link = article[`img${i}`]; // Récupérez le lien de l'image à partir de la base de données
+        if (link) {
+            images.push(
+                <div key={`img-${i}`} className='flex flex-col justify-center items-center'>
+                    <div className=''>
+                        <Image className='mx-auto object-cover'
+                            src={link}
+                            alt={`Picture ${i} of the author`}
+                            width={580}
+                            height={725}
+                        />
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
+
 
     return (
         <div className='dark:bg-neutral-900'>
@@ -327,8 +330,8 @@ export default function Article({ article }) {
                                     <button
                                         key={size.label}
                                         className={`text-xs border py-2 px-0 w-full ${activeSizeIndex === index
-                                                ? `${theme === 'dark' ? 'bg-white text-black border-white' : 'bg-gray-900 text-white border-gray-900'}`
-                                                : 'border-gray-400'
+                                            ? `${theme === 'dark' ? 'bg-white text-black border-white' : 'bg-gray-900 text-white border-gray-900'}`
+                                            : 'border-gray-400'
                                             }`}
                                         onClick={() => handleClickSize(index)}
                                         disabled={size.stock === 0}
@@ -559,12 +562,12 @@ export async function getStaticProps(ctx) {
 }
 
 export async function getStaticPaths(ctx) {
-    
+
     const { data, error } = await supabase.from('articles').select('*');
     if (error) {
         console.error(error);
         alert(error.message);
-    }    
+    }
     const articles = data;
     return {
         paths: articles.map(article => `/articles/${article.id}`),

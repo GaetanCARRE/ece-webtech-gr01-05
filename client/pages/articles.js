@@ -14,13 +14,13 @@ export default function ArticlesPage({ articles }) {
       <Header />
       <div className='grid md:grid-cols-2 pb-40 gap-x-20 px-20 pb-8 pt-10 text-black dark:text-white dark:bg-neutral-900 lg:grid-cols-3 sm:grid-cols-1'>
         {articles.map(article => {
-          const test = require(`/img/${article.img}1.webp`);
+          const imageLink =article.img1; // Récupérez le lien de l'image à partir de la base de données
           return (
             <div key={article.id} className='flex flex-col justify-center items-center pb-10 dark:bg-neutral-900'>
               <Link href={`/articles/${article.id}`}>
                 <div className='dark:bg-neutral-900'>
                   <Image className='mx-auto object-cover'
-                    src={test}
+                    src={imageLink}
                     alt="Picture of the author"
                     width={580}
                     height={725}
@@ -34,6 +34,7 @@ export default function ArticlesPage({ articles }) {
           )
         })}
       </div>
+
       <Footer />
     </>
   );
