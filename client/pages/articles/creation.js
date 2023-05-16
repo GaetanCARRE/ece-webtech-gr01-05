@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { supabase } from '../../supabase/supabase.js';
 import { useState } from 'react';  // Ajout de useContext
 import { useUser } from '@supabase/auth-helpers-react'
+import Link from 'next/link';
 
 
 
@@ -194,6 +195,7 @@ export default function ArticlesCreation() {
                                     nullable
                                 />
                             </div>
+                            <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Please upload your image <Link href="https://postimages.org/" className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white underline'>here</Link> and get the link</h1>
                             <div className='dark:bg-neutral-900 dark:text-white'>
                             <h1 className='text-black text-xl text-bold pb-2 dark:bg-neutral-900 dark:text-white'>Image 1</h1>
                                 <input
