@@ -15,25 +15,20 @@
 
 🚀 Nous sommes impatients de commencer ce voyage passionnant dans le monde de la technologie web ! Attention décollage !
 ## Table des matières
-- [Installation](#install)
-- [Credentials](#cred)
-- [Usage](#usage)
-    - [Naviguer à travers les différents pages du site](#nav)
-    - [Ajouter un article à votre panier](#artcart)
-    - [Créer un commentaire](#createcomment)
-    - [Modifier / Supprimer un commentaire](#modifcomment)
-    - [(Admin) Créer un article](#createarticle)
-    - [(Admin) Modifier un article](#modifarticle)
-    - [(Admin) Supprimer un article](#suprarticle)
-    - [Créer un compte](#createaccount)
-    - [Se connecter à un compte](#connectaccount)
-    - [Accéder aux informations de son profil](#profil)
-    - [Passer du mode light à dark et inversement](#darktheme)
-    - [Intégration photo de profil Gravatar](#gravatar)
-- [Production](#prod)
-- [Authors](#authors)
-- [Tasks - Auto-évaluation](#tasks)
-- [Comments on the project and the course](#cours)
+- [Webtech Projet](#webtech-projet)
+  - [Introduction](#introduction)
+  - [Table des matières](#table-des-matières)
+  - [⚙️ Installation ](#️-installation-)
+  - [🔑 Credentials ](#-credentials-)
+  - [💻 Usage ](#-usage-)
+  - [🏭  Production ](#--production-)
+  - [🧑 Authors ](#-authors-)
+  - [📝  Tasks - Auto-évaluation ](#--tasks---auto-évaluation-)
+      - [Project management](#project-management)
+      - [Applications development](#applications-development)
+      - [Bonus](#bonus)
+      - [Notre Note](#notre-note)
+  - [👨‍🏫 Comments on the project and the course ](#-comments-on-the-project-and-the-course-)
 
 ## ⚙️ Installation <a name="install"></a>
 1. Clonez le repository sur votre machine.
@@ -87,12 +82,12 @@ password: admincns
 - Naming convention → 2/2
 - Project structure → 2/2
 - Git → 2/2
-- Code quality → 1.5/2
+- Code quality → 1/2 _Pas assez de commentaires_
 - Design, UX, and content → 4/4
 
 #### Applications development
 - [X] Basic pages and navigation → 2/2
-- [X] Login and profile page → 3/4
+- [X] Login and profile page → 4/4
 - [X] New article creation → 6/6
 - [X] New comment creation → 4/4
 - [X] Ressource access control → 5/6
@@ -106,11 +101,11 @@ password: admincns
 - [ ] Theme selection → 0/4
 
 #### Bonus
-- [X] Shopping cart + stock gestion → 3/6
-- [X] Responsive design → 1/2
+- [X] Shopping cart + stock gestion → 3/6 _Manque la validation et la quantités d'articles_
+- [X] Responsive design → 1/2 _Pas parfait_
 
 #### Notre Note
-57.5/60 → 19.2/20 
+58/60 → 19.3/20
 
 ## 👨‍🏫 Comments on the project and the course <a name="cours"></a>
 Le cours est très agréable en grande partie grâce aux professeurs, que ce soit Monsieur FARAULT ou Monsieur WORMS, qui expliquent clairement tous les concepts du cours et répondent aux questions sur des sujets annexes qui ne sont pas nécessairement abordés dans le programme. En outre, le système TP / projet est très intéressant et permet de bien assimiler les notions étudiées. Toutefois, il convient de noter qu'un critère important pour la notation des projets, _Search_, a été ajouté tardivement (le 1er mai) et représente une tâche difficile de 6 points aussi il y avais beaucoup de tasks à faire pour le projet.
