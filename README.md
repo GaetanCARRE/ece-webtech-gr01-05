@@ -58,6 +58,7 @@ password: admincns
 - Modifier / Supprimer un commentaire <a name="modifcomment"></a>
 ![Untitled](/demos/4.gif)
 - (Admin) Créer un article <a name="createarticle"></a>
+![Untitled](/demos/6.gif)
 - (Admin) Modifier un article <a name="modifarticle"></a>
 ![Untitled](/demos/5m.gif)
 - (Admin) Supprimer un article <a name="suprarticle"></a>
