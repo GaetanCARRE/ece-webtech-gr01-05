@@ -83,32 +83,33 @@ password: admincns
 
 ## 📝  Tasks - Auto-évaluation <a name="tasks"></a>
 #### Project management
-- Naming convention → /2
-- Project structure → /2
-- Git → /2
-- Code quality → /2
-- Design, UX, and content → /4
+- Naming convention → 2/2
+- Project structure → 2/2
+- Git → 2/2
+- Code quality → 1.5/2
+- Design, UX, and content → 4/4
 
 #### Applications development
-- [X] Basic pages and navigation → /2
-- [X] Login and profile page → /4
-- [X] New article creation → /6
-- [X] New comment creation → /4
-- [X] Ressource access control → /6
-- [X] Artical modification / removal → /4
-- [X] Comment modification / removal → /4
-- [X] Account settings → /4
-- [X] Search → /6
-- [ ] WYSIWYG integration → /2
-- [X] Gravatar integration → /2
-- [X] Light / dark theme → /2
-- [ ] Theme selection → /4
+- [X] Basic pages and navigation → 2/2
+- [X] Login and profile page → 3/4
+- [X] New article creation → 6/6
+- [X] New comment creation → 4/4
+- [X] Ressource access control → 5/6
+- [X] Artical modification / removal → 4/4
+- [X] Comment modification / removal → 4/4
+- [X] Account settings → 4/4
+- [X] Search → 6/6
+- [ ] WYSIWYG integration → 0/2
+- [X] Gravatar integration → 2/2
+- [X] Light / dark theme → 2/2
+- [ ] Theme selection → 0/4
 
 #### Bonus
-- [X] Shopping cart
+- [X] Shopping cart + stock gestion → 3/6
+- [X] Responsive design → 1/2
 
 #### Notre Note
-/60 → /20 
+57.5/60 → 19.2/20 
 
 ## 👨‍🏫 Comments on the project and the course <a name="cours"></a>
 Le cours est très agréable en grande partie grâce aux professeurs, que ce soit Monsieur FARAULT ou Monsieur WORMS, qui expliquent clairement tous les concepts du cours et répondent aux questions sur des sujets annexes qui ne sont pas nécessairement abordés dans le programme. En outre, le système TP / projet est très intéressant et permet de bien assimiler les notions étudiées. Toutefois, il convient de noter qu'un critère important pour la notation des projets, _Search_, a été ajouté tardivement (le 1er mai) et représente une tâche difficile de 6 points aussi il y avais beaucoup de tasks à faire pour le projet.
