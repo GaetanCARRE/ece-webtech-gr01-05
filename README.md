@@ -16,6 +16,7 @@
 🚀 Nous sommes impatients de commencer ce voyage passionnant dans le monde de la technologie web ! Attention décollage !
 ## Table des matières
 - [Installation](#install)
+- [Credentials](#cred)
 - [Usage](#usage)
 - [Production](#prod)
 - [Authors](#authors)
@@ -29,6 +30,11 @@
 1. Pour lancer le site, vous devez d'abord le build en utilisant la commande ```npm run build```, puis vous pouvez le démarrer en utilisant la commande: 
     - ```npm run start``` si vous souhaitez simplement visualiser le site sans modifications. 
     - ```npm run dev```si vous envisagez de modifier le site.
+
+## 🔑 Credentials <a name="cred"></a>
+Compte admin:    
+mail: admin@cns.fr    
+password: admincns
 
 ## 💻 Usage <a name="usage"></a>
 - Naviguer à travers les différents pages du site
