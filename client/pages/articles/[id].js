@@ -303,7 +303,7 @@ export default function Article({ article }) {
                             <textarea
                                 className=' text-sm outline-none border border-gray-400 rounded-[4px] py-2 px-2 mb-10 w-full h-[200px] dark:bg-neutral-900 dark:text-white'
                                 value={description}
-                                onChange={(e) => handleDescriptionChange(e.target.value)}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                         </div>
                         <div className='dark:bg-neutral-900 dark:text-white'>
