@@ -8,7 +8,6 @@ import Image from 'next/image';
 export default function CheckoutPage() {
   const { checkout } = useContext(CheckoutContext);
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
   console.log(checkout);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ export default function CheckoutPage() {
       });
 
       setArticles(newArticles);
-      setLoading(false);
     };
 
 

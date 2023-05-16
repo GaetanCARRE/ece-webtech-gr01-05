@@ -13,7 +13,6 @@ import gravatar from 'gravatar'
 import { useRouter } from 'next/router'
 import { FiSearch } from 'react-icons/fi';
 import { MdLightMode, MdDarkMode } from 'react-icons/md'
-import { RxHamburgerMenu } from 'react-icons/rx'
 
 
 

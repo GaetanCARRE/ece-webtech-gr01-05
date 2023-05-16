@@ -14,7 +14,6 @@ import { useRouter } from 'next/router';
 export default function Article({ article }) {
     const router = useRouter();
     const { checkout, setCheckout } = useContext(CheckoutContext);
-    // const article = fetchArticle();
 
     const [theme, setTheme] = useState('light')
     useEffect(() => {

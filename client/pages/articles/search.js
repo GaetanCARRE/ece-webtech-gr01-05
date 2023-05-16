@@ -26,7 +26,7 @@ export default function ArticlesSearch() {
                 setArticles(data);
             }
         }
-        
+
 
         if (searchQuery) {
             getArticles();
@@ -34,32 +34,33 @@ export default function ArticlesSearch() {
     }, [searchQuery]);
 
     return (
-        <div className='dark:bg-neutral-900'>
+        <div className='dark:bg-neutral-900 flex flex-col h-screen '>
             <Header />
             <div className='dark:bg-neutral-900'>
                 <h1 className='text-2xl text-center my-10 dark:bg-neutral-900 dark:text-white'>Articles Search</h1>
             </div>
             <div className='grid grid-cols-3 pb-40 gap-x-20 px-20 pb-8 dark:bg-neutral-900'>
-            {articles.map((article) => {
-                const test = article.img1;
-                return (
-                <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10 dark:bg-neutral-900 dark:text-white'>
-                    <Link href={`/articles/${article.id}`} className='text-black dark:bg-neutral-900 dark:text-white'>
-                        <div className='text-black dark:bg-neutral-900 dark:text-white'>
-                            <Image className='mx-auto object-cover'
-                                src={test}
-                                alt="Picture of the author"
-                                width={580}
-                                height={725}
-                            />
+                {articles.map((article) => {
+                    const test = article.img1;
+                    return (
+                        <div key={article.id} className='text-black flex flex-col justify-center items-center pb-10 dark:bg-neutral-900 dark:text-white'>
+                            <Link href={`/articles/${article.id}`} className='text-black dark:bg-neutral-900 dark:text-white'>
+                                <div className='text-black dark:bg-neutral-900 dark:text-white'>
+                                    <Image className='mx-auto object-cover'
+                                        src={test}
+                                        alt="Picture of the author"
+                                        width={580}
+                                        height={725}
+                                    />
+                                </div>
+                                <h2 className='text-black text-sm font-bold pt-2 dark:bg-neutral-900 dark:text-white'>{article.title}</h2>
+                                <h2 className='text-black text-sm py-2 font-light dark:bg-neutral-900 dark:text-white'>{article.brand}</h2>
+                                <h2 className='text-black text-sm font-bold dark:bg-neutral-900 dark:text-white'>{article.price}€</h2>
+                            </Link>
                         </div>
-                        <h2 className='text-black text-sm font-bold pt-2 dark:bg-neutral-900 dark:text-white'>{article.title}</h2>
-                        <h2 className='text-black text-sm py-2 font-light dark:bg-neutral-900 dark:text-white'>{article.brand}</h2>
-                        <h2 className='text-black text-sm font-bold dark:bg-neutral-900 dark:text-white'>{article.price}€</h2>
-                    </Link>
-                </div>
-            )}
-            )}
+                    )
+                }
+                )}
             </div>
             <Footer />
         </div>

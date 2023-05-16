@@ -1,6 +1,5 @@
-import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
 import React from "react";
-import { PropsWithChildren, useEffect, useState } from "react";
 import CarouselControls from "./CarouselControls";
 
 const Carousel = ({ children, ...options }) => {

@@ -3,12 +3,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import { supabase } from '../supabase/supabase.js';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function ArticlesPage({ articles }) {
-  const supabase = useSupabaseClient()
-  const user = useUser()
-  const role = user?.role
   return (
     <>
       <Header />
