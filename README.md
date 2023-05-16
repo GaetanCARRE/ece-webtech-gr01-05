@@ -32,15 +32,24 @@
 
 ## 💻 Usage <a name="usage"></a>
 - Naviguer à travers les différents pages du site
+![Untitled](/demos/1.gif)
 - Ajouter un article à votre panier
+![Untitled](/demos/2.gif)
 - Créer un commentaire
+![Untitled](/demos/3.gif)
 - Modifier / Supprimer un commentaire
+![Untitled](/demos/4.gif)
 - (Admin) Créer un article
 - (Admin) Modifier / Supprimer un article
 - Créer un compte
+![Untitled](/demos/7.gif)
 - Se connecter à son compte
+![Untitled](/demos/8.gif)
 - Accéder aux informations de son profil
+![Untitled](/demos/9.gif)
 - Passer du mode light à dark et inversement
+![Untitled](/demos/10.gif)
+- Intégration photo de profil Gravatar
 
 ## 🏭  Production <a name="prod"></a>
 - Vercel URL : https://ece-webtech-gr01-05.vercel.app
@@ -67,10 +76,10 @@
 - [X] Artical modification / removal → /4
 - [X] Comment modification / removal → /4
 - [X] Account settings → /4
-- [ ] Search → /6
+- [X] Search → /6
 - [ ] WYSIWYG integration → /2
 - [X] Gravatar integration → /2
-- [ ] Light / dark theme → /2
+- [X] Light / dark theme → /2
 - [ ] Theme selection → /4
 
 #### Bonus
