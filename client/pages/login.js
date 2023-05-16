@@ -23,7 +23,7 @@ const Login = () => {
             redirectTo="/profile"
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
-            providers={['google']}
+            providers={['google', 'github']}
             theme="light"
           />
         ) : (
