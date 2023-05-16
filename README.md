@@ -46,7 +46,10 @@ password: admincns
 - Modifier / Supprimer un commentaire
 ![Untitled](/demos/4.gif)
 - (Admin) Créer un article
-- (Admin) Modifier / Supprimer un article
+- (Admin) Modifier un article
+![Untitled](/demos/5m.gif)
+- (Admin) Supprimer un article
+![Untitled](/demos/5s.gif)
 - Créer un compte
 ![Untitled](/demos/7.gif)
 - Se connecter à son compte
@@ -56,6 +59,7 @@ password: admincns
 - Passer du mode light à dark et inversement
 ![Untitled](/demos/10.gif)
 - Intégration photo de profil Gravatar
+![Untitled](/demos/11.gif)
 
 ## 🏭  Production <a name="prod"></a>
 - Vercel URL : https://ece-webtech-gr01-05.vercel.app
