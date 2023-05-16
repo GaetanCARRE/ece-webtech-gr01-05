@@ -18,6 +18,18 @@
 - [Installation](#install)
 - [Credentials](#cred)
 - [Usage](#usage)
+    - [Naviguer à travers les différents pages du site](#nav)
+    - [Ajouter un article à votre panier](#artcart)
+    - [Créer un commentaire](#createcomment)
+    - [Modifier / Supprimer un commentaire](#modifcomment)
+    - [(Admin) Créer un article](#createarticle)
+    - [(Admin) Modifier un article](#modifarticle)
+    - [(Admin) Supprimer un article](#suprarticle)
+    - [Créer un compte](#createaccount)
+    - [Se connecter à un compte](#connectaccount)
+    - [Accéder aux informations de son profil](#profil)
+    - [Passer du mode light à dark et inversement](#darktheme)
+    - [Intégration photo de profil Gravatar](#gravatar)
 - [Production](#prod)
 - [Authors](#authors)
 - [Tasks - Auto-évaluation](#tasks)
@@ -37,28 +49,28 @@ mail: admin@cns.fr
 password: admincns
 
 ## 💻 Usage <a name="usage"></a>
-- Naviguer à travers les différents pages du site
+- Naviguer à travers les différents pages du site <a name="nav"></a>
 ![Untitled](/demos/1.gif)
-- Ajouter un article à votre panier
+- Ajouter un article à votre panier <a name="artcart"></a>
 ![Untitled](/demos/2.gif)
-- Créer un commentaire
+- Créer un commentaire <a name="createcomment"></a>
 ![Untitled](/demos/3.gif)
-- Modifier / Supprimer un commentaire
+- Modifier / Supprimer un commentaire <a name="modifcomment"></a>
 ![Untitled](/demos/4.gif)
-- (Admin) Créer un article
-- (Admin) Modifier un article
+- (Admin) Créer un article <a name="createarticle"></a>
+- (Admin) Modifier un article <a name="modifarticle"></a>
 ![Untitled](/demos/5m.gif)
-- (Admin) Supprimer un article
+- (Admin) Supprimer un article <a name="suprarticle"></a>
 ![Untitled](/demos/5s.gif)
-- Créer un compte
+- Créer un compte <a name="createaccount"></a>
 ![Untitled](/demos/7.gif)
-- Se connecter à son compte
+- Se connecter à un compte <a name="connectaccount"></a>
 ![Untitled](/demos/8.gif)
-- Accéder aux informations de son profil
+- Accéder aux informations de son profil <a name="profil"></a>
 ![Untitled](/demos/9.gif)
-- Passer du mode light à dark et inversement
+- Passer du mode light à dark et inversement <a name="darktheme"></a>
 ![Untitled](/demos/10.gif)
-- Intégration photo de profil Gravatar
+- Intégration photo de profil Gravatar <a name="gravatar"></a>
 ![Untitled](/demos/11.gif)
 
 ## 🏭  Production <a name="prod"></a>
